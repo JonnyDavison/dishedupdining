@@ -1,1 +1,1 @@
-web: gunicorn dishedupdining.wsgi
+web: gunicorn core.wsgi
