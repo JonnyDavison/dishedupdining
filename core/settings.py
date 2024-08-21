@@ -37,7 +37,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*','8000-jonnydaviso-dishedupdin-y6509ao3gk5.ws-eu115.gitpod.io']
+ALLOWED_HOSTS = ['https://dishedupdining-339b98932b82.herokuapp.com/','8000-jonnydaviso-dishedupdin-y6509ao3gk5.ws-eu115.gitpod.io']
 
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # Application definition
