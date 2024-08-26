@@ -4,225 +4,284 @@
 
 {% block content %}
 
+<body class="font-body">
 
-				<div class="bg-gray-200 w-full text-xl md:text-2xl text-gray-800 leading-normal rounded-t">
-					
-				<!--Lead Card-->
-				<div class="flex h-full bg-white rounded overflow-hidden shadow-lg">
-					<a href="post.html" class="flex flex-wrap no-underline hover:no-underline">
-						<div class="w-full md:w-2/3 rounded-t">	
-							<img src="https://source.unsplash.com/collection/494263/800x600" class="h-full w-full shadow">
-						</div>
+    <!-- home section -->
+    <section class="bg-white mb-20 md:mb-52 xl:mb-72 relative">
+        <div class="container max-w-screen-xl mx-auto px-4 relative">
+            <div class="flex items-center justify-center xl:justify-start">
+                <div class="mt-28 text-center xl:text-left relative z-10">
+                    <h1 class="font-semibold text-3xl md:text-4xl lg:text-5xl text-gray-900 leading-normal mb-6">Event
+                        Catering Specialists <br> Simple, Classy, Tasty.</h1>
+    
+                    <p class="font-normal text-xl text-gray-400 leading-relaxed mb-12">
+                        We specialise beautiful catering from intimate meals at home <br> to large events, parties &
+                        more.
+                    </p>
+                    <p class="font-normal text-l text-gray-400 leading-relaxed mb-12">
+                        Find out what we can cater for you <br> get in touch today!
+                    </p>
+    
+                    <button
+                        class="px-6 py-4 bg-green-700 text-white font-semibold text-lg rounded-xl hover:bg-green-900 transition ease-in-out duration-500">Contact
+                        us</button>
+                </div>
+            </div>
+        </div>
+    
+        <div class="hidden xl:block xl:absolute z-0 top-0 right-0">
+            <img src="{{ MEDIA_URL }}home-img.png" alt="Home img">
+        </div>
+    </section>
+    <!-- home section //nd -->
 
-						<div class="w-full md:w-1/3 flex flex-col flex-grow flex-shrink">
-							<div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
-								<p class="w-full text-gray-600 text-xs md:text-sm pt-6 px-6">GETTING STARTED</p>
-								<div class="w-full font-bold text-xl text-gray-900 px-6">👋 Welcome fellow Tailwind CSS and Ghost fan</div>
-								<p class="text-gray-800 font-serif text-base px-6 mb-5">
-									This starter template is an attempt to replicate the default Ghost theme "Casper" using Tailwind CSS and vanilla Javascript.
-								</p>
-							</div>
+    <!-- feature section -->
+    <section class="bg-white py-10 md:py-16 xl:relative">
 
-							<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
-								<div class="flex items-center justify-between">
-									<img class="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src="http://i.pravatar.cc/300" alt="Avatar of Author">
-									<p class="text-gray-600 text-xs md:text-sm">1 MIN READ</p>
-								</div>
-							</div>
-						</div>
+        <div class="container max-w-screen-xl mx-auto px-4">
 
-					</a>
-				</div>
-				<!--/Lead Card-->
+            <div class="flex flex-col xl:flex-row justify-end">
+
+                <div class="hidden xl:block xl:absolute left-0 bottom-0 w-full">
+                    <img src="{{ MEDIA_URL }}feature-img.png" alt="Feature img">
+                </div>
+
+                <div class="">
+
+                    <h1 class="font-semibold text-gray-900 text-xl md:text-3xl text-center leading-normal mb-6">Find out
+                        more about our most popular events</h1>
+
+                    <p class="font-normal text-gray-400 text-md md:text-xl text-center mb-16">Take the pressure out of
+                        large events<br> or enjoy an event at home by letting us do the work</p>
+
+                        <div class="grid grid-cols-12">
+                            <div class="col-span-full md:col-start-4 md:col-span-8 ">
+                                <div class="flex flex-col space-y-20">
+                                    <div class="flex flex-col sm:flex-row items-center sm:items-start">
+                                        <div class="w-full sm:w-24 flex justify-center sm:justify-start mb-5 sm:mb-0">
+                                            <div class="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center">
+                                                <i data-feather="check-circle" class="text-green-900"></i>
+                                            </div>
+                                        </div>
+                                        <div class="flex-1 text-center sm:text-left sm:ml-8">
+                                            <h4 class="font-semibold text-gray-900 text-xl mb-2">At Home Catering</h4>
+                                            <p class="font-normal text-gray-400 text-l leading-relaxed">Bespoke home catering to suit any event</p>
+                                        </div>
+                                    </div>
+                        
+                                    <div class="flex flex-col sm:flex-row items-center sm:items-start">
+                                        <div class="w-full sm:w-24 flex justify-center sm:justify-start mb-5 sm:mb-0">
+                                            <div class="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center">
+                                                <i data-feather="lock" class="text-green-900"></i>
+                                            </div>
+                                        </div>
+                                        <div class="flex-1 text-center sm:text-left sm:ml-8">
+                                            <h4 class="font-semibold text-gray-900 text-xl mb-2">Finger Food & Hot Buffets</h4>
+                                            <p class="font-normal text-gray-400 text-l leading-relaxed">Delivered or served at any location</p>
+                                        </div>
+                                    </div>
+                        
+                                    <div class="flex flex-col sm:flex-row items-center sm:items-start">
+                                        <div class="w-full sm:w-24 flex justify-center sm:justify-start mb-5 sm:mb-0">
+                                            <div class="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center">
+                                                <i data-feather="credit-card" class="text-green-900"></i>
+                                            </div>
+                                        </div>
+                                        <div class="flex-1 text-center sm:text-left sm:ml-8">
+                                            <h4 class="font-semibold text-gray-900 text-xl mb-2">Work Place Catering</h4>
+                                            <p class="font-normal text-gray-400 text-l leading-relaxed">Enhance your office experience</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                </div>
+
+            </div>
+
+        </div> <!-- container.// -->
+
+    </section>
+    <!-- feature section //end -->
+
+    <!-- gallery section -->
+    <section class="bg-white py-10 md:py-16">
+
+        <div class="container max-w-screen-xl mx-auto px-4">
+
+            <h1 class="font-semibold text-gray-900 text-4xl text-center mb-10">Our Gallery</h1>
+
+            <div class="hidden md:block flex items-center text-center space-x-10 lg:space-x-20 mb-12">
+                <a href="#"
+                    class="px-6 py-2 bg-green-800 text-white font-semibold text-xl rounded-lg hover:bg-green-600 transition ease-in-out duration-500">All</a>
+                <a href="#"
+                    class="px-6 py-2 text-gray-900 font-normal text-xl rounded-lg hover:bg-gray-200 hover:text-gray-400 transition ease-in-out duration-500">Exterior</a>
+                <a href="#"
+                    class="px-6 py-2 text-gray-900 font-normal text-xl rounded-lg hover:bg-gray-200 hover:text-gray-400 transition ease-in-out duration-500">Interior</a>
+                <a href="#"
+                    class="px-6 py-2 text-gray-900 font-normal text-xl rounded-lg hover:bg-gray-200 hover:text-gray-400 transition ease-in-out duration-500">Building</a>
+            </div>
+
+            <div class="flex space-x-4 md:space-x-6 lg:space-x-8">
+                <div>
+                    <img src="{{ MEDIA_URL }}gallery-1.png" alt="image"
+                        class="mb-4 md:mb-6 lg:mb-8 hover:opacity-75 transition ease-in-out duration-500">
+                    <img src="{{ MEDIA_URL }}gallery-4.png" alt="image"
+                        class="hover:opacity-75 transition ease-in-out duration-500">
+                </div>
+
+                <div>
+                    <img src="{{ MEDIA_URL }}gallery-2.png" alt="image"
+                        class="mb-4 md:mb-6 lg:mb-8 hover:opacity-75 transition ease-in-out duration-500">
+                    <img src="{{ MEDIA_URL }}gallery-5.png" alt="image"
+                        class="mb-3 md:mb-6 lg:mb-8 hover:opacity-75 transition ease-in-out duration-500">
+                    <img src="{{ MEDIA_URL }}gallery-6.png" alt="image"
+                        class="hover:opacity-75 transition ease-in-out duration-500">
+                </div>
+
+                <div>
+                    <img src="{{ MEDIA_URL }}gallery-3.png" alt="image"
+                        class="mb-4 md:mb-6 lg:mb-8 hover:opacity-75 transition ease-in-out duration-500">
+                    <img src="{{ MEDIA_URL }}gallery-7.png" alt="image"
+                        class="hover:opacity-75 transition ease-in-out duration-500">
+                </div>
+            </div>
+
+        </div> <!-- container.// -->
+
+    </section>
+    <!-- gallery section //end -->
+
+    <!-- testimonial section -->
+    <section class="bg-white py-10 md:py-16">
+
+        <div class="container max-w-screen-xl mx-auto px-4 xl:relative">
+
+            <p class="font-normal text-gray-400 text-lg md:text-xl text-center uppercase mb-6">Testimonial</p>
+
+            <h1 class="font-semibold text-gray-900 text-2xl md:text-4xl text-center leading-normal mb-14">What People
+                Say <br> About D’house</h1>
+
+            <div class="hidden xl:block xl:absolute top-0">
+                <img src="{{ MEDIA_URL }}testimoni-1.png" alt="Image">
+            </div>
+
+            <div class="hidden xl:block xl:absolute top-32">
+                <img src="{{ MEDIA_URL }}testimoni-2.png" alt="Image">
+            </div>
+
+            <div
+                class="flex flex-col md:flex-row md:items-center justify-center md:space-x-8 lg:space-x-12 mb-10 md:mb-20">
+
+                <div class="bg-gray-100 rounded-lg mb-10 md:mb-0">
+                    <img src="{{ MEDIA_URL }}testimoni-3.png" alt="Image" class="mx-8 my-8">
+
+                    <div class="flex items-center gap-5 mx-8">
+                        <i data-feather="star" class="text-yellow-500"></i>
+                        <i data-feather="star" class="text-yellow-500"></i>
+                        <i data-feather="star" class="text-yellow-500"></i>
+                        <i data-feather="star" class="text-yellow-500"></i>
+                        <i data-feather="star" class="text-yellow-500"></i>
+                    </div>
+
+                    <p class="font-normal text-sm lg:text-md text-gray-400 mx-8 my-8">I recommend anyone to buy house on
+                        <br> D’house. I received great customer service <br> from the specialists who helped me.</p>
+
+                    <h3 class="font-semibold text-gray-900 text-xl md:text-2xl lg:text-3xl mx-8 mb-8">Brooklyn Simmons
+                    </h3>
+                </div>
+
+                <div class="bg-gray-100 rounded-lg">
+                    <img src="{{ MEDIA_URL }}testimoni-4.png" alt="Image" class="mx-8 my-8">
+
+                    <div class="flex items-center gap-5 mx-8">
+                        <i data-feather="star" class="text-yellow-500"></i>
+                        <i data-feather="star" class="text-yellow-500"></i>
+                        <i data-feather="star" class="text-yellow-500"></i>
+                        <i data-feather="star" class="text-yellow-500"></i>
+                        <i data-feather="star" class="text-yellow-500"></i>
+                    </div>
+
+                    <p class="font-normal text-sm lg:text-md text-gray-400 mx-8 my-8">D’house is the best property agent
+                        in the <br> world. I received great customer service <br> from the D’house agent</p>
+
+                    <h3 class="font-semibold text-gray-900 text-xl md:text-2xl lg:text-3xl mx-8 mb-8">Ralph Edwards</h3>
+                </div>
+
+            </div>
+
+        </div> <!-- container.// -->
+
+    </section>
+    <!-- testimoni section //end -->
+
+    <!-- book section -->
+    <section class="bg-white py-10 md:py-16">
+
+        <div class="container max-w-screen-xl mx-auto px-4 xl:relative">
+
+            <div class="bg-green-800 flex flex-col lg:flex-row items-center justify-evenly py-14 rounded-3xl">
+
+                <div class="text-center lg:text-left mb-10 lg:mb-0">
+                    <h1 class="font-semibold text-white text-4xl md:text-5xl lg:text-7xl leading-normal mb-4">Talk to us
+                        <br> to discuss</h1>
+
+                    <p class="font-normal text-white text-md md:text-xl">Need more time to discuss? Won’t worry, we are
+                        <br> ready to help you. You can fill in the column on the <br> right to book a meeting with us.
+                        Totally free.</p>
+                </div>
+
+                <div class="hidden xl:block xl:absolute right-0">
+                    <img src="{{ MEDIA_URL }}book.png" alt="Image">
+                </div>
+
+                <div class="hidden md:block bg-white xl:relative px-6 py-3 rounded-3xl">
+                    <div class="py-3">
+                        <h3 class="font-semibold text-gray-900 text-3xl">Book a meeting</h3>
+                    </div>
+
+                    <div class="py-3">
+                        <input type="text" placeholder="Full Name"
+                            class="px-4 py-4 w-96 bg-gray-100 placeholder-gray-400 rounded-xl outline-none">
+                    </div>
+
+                    <div class="py-3">
+                        <input type="text" placeholder="Email"
+                            class="px-4 py-4 w-96 bg-gray-100 placeholder-gray-400 rounded-xl outline-none">
+                    </div>
+
+                    <div class="py-3 relative">
+                        <input type="text" placeholder="Date"
+                            class="px-4 py-4 w-96 bg-gray-100 font-normal text-lg placeholder-gray-400 rounded-xl outline-none">
+
+                        <div class="absolute inset-y-0 left-80 ml-6 flex items-center text-xl text-gray-600">
+                            <i data-feather="calendar"></i>
+                        </div>
+                    </div>
+
+                    <div class="py-3 relative">
+                        <input type="text" placeholder="Virtual Meeting"
+                            class="px-4 py-4 w-96 bg-gray-100 placeholder-gray-400 rounded-xl outline-none">
+
+                        <div class="absolute inset-y-0 left-80 ml-6 flex items-center text-xl text-gray-600">
+                            <i data-feather="chevron-down"></i>
+                        </div>
+                    </div>
+
+                    <div class="py-3">
+                        <button
+                            class="w-full py-4 font-semibold text-lg text-white bg-green-700 rounded-xl hover:bg-green-900 transition ease-in-out duration-500">Booking</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div> <!-- container.// -->
+
+    </section>
+    <!-- book section //end -->
 
 
-				<!--Posts Container-->
-				<div class="flex flex-wrap justify-between pt-12 -mx-6">
 
-					<!--1/3 col -->
-					<div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-						<div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
-							<a href="#" class="flex flex-wrap no-underline hover:no-underline">
-								<img src="https://source.unsplash.com/collection/225/800x600" class="h-64 w-full rounded-t pb-6">
-								<p class="w-full text-gray-600 text-xs md:text-sm px-6">GETTING STARTED</p>
-								<div class="w-full font-bold text-xl text-gray-900 px-6">Lorem ipsum dolor sit amet.</div>
-								<p class="text-gray-800 font-serif text-base px-6 mb-5">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ipsum eu nunc commodo posuere et sit amet ligula. 
-								</p>
-							</a>
-						</div>
-						<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
-							<div class="flex items-center justify-between">
-								<img class="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src="http://i.pravatar.cc/300" alt="Avatar of Author">
-								<p class="text-gray-600 text-xs md:text-sm">1 MIN READ</p>
-							</div>
-						</div>
-					</div>
-				
-					
-					<!--1/3 col -->
-					<div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-						<div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
-							<a href="#" class="flex flex-wrap no-underline hover:no-underline">
-								<img src="https://source.unsplash.com/collection/3106804/800x600" class="h-64 w-full rounded-t pb-6">
-								<p class="w-full text-gray-600 text-xs md:text-sm px-6">GETTING STARTED</p>
-								<div class="w-full font-bold text-xl text-gray-900 px-6">Lorem ipsum dolor sit amet.</div>
-								<p class="text-gray-800 font-serif text-base px-6 mb-5">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. ipsum dolor sit amet, consectetur adipiscing elit. Aliquam at ip Aliquam at ipsum eu nunc commodo posuere et sit amet ligula. 
-								</p>
-							</a>
-							</div>
-						<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
-							<div class="flex items-center justify-between">
-								<img class="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src="http://i.pravatar.cc/300" alt="Avatar of Author">
-								<p class="text-gray-600 text-xs md:text-sm">1 MIN READ</p>
-							</div>
-						</div>
-					</div>
-
-					<!--1/3 col -->
-					<div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-						<div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
-							<a href="#" class="flex flex-wrap no-underline hover:no-underline">
-								<img src="https://source.unsplash.com/collection/539527/800x600" class="h-64 w-full rounded-t pb-6">
-								<p class="w-full text-gray-600 text-xs md:text-sm px-6">GETTING STARTED</p>
-								<div class="w-full  font-bold text-xl text-gray-900 px-6">Lorem ipsum dolor sit amet.</div>
-								<p class="text-gray-800 font-serif text-base px-6 mb-5">
-									Lorem ipsum eu nunc commodo posuere et sit amet ligula. 
-								</p>
-							</a>
-						</div>
-						<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
-							<div class="flex items-center justify-between">
-								<img class="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src="http://i.pravatar.cc/300" alt="Avatar of Author">
-								<p class="text-gray-600 text-xs md:text-sm">1 MIN READ</p>
-							</div>
-						</div>
-					</div>
-
-
-					<!--1/2 col -->
-					<div class="w-full md:w-1/2 p-6 flex flex-col flex-grow flex-shrink">
-						<div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
-							<a href="#" class="flex flex-wrap no-underline hover:no-underline">
-								<img src="https://source.unsplash.com/collection/3657445/800x600" class="h-full w-full rounded-t pb-6">
-								<p class="w-full text-gray-600 text-xs md:text-sm px-6">GETTING STARTED</p>
-								<div class="w-full font-bold text-xl text-gray-900 px-6">Lorem ipsum dolor sit amet.</div>
-								<p class="text-gray-800 font-serif text-base px-6 mb-5">
-									Lorem ipsum eu nunc commodo posuere et sit amet ligula. 
-								</p>
-							</a>
-						</div>
-						<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
-							<div class="flex items-center justify-between">
-								<img class="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src="http://i.pravatar.cc/300" alt="Avatar of Author">
-								<p class="text-gray-600 text-xs md:text-sm">1 MIN READ</p>
-							</div>
-						</div>
-					</div>
-
-					<!--1/2 col -->
-					<div class="w-full md:w-1/2 p-6 flex flex-col flex-grow flex-shrink">
-						<div class="flex-1 flex-row bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
-							<a href="#" class="flex flex-wrap no-underline hover:no-underline">	
-								<img src="https://source.unsplash.com/collection/764827/800x600" class="h-full w-full rounded-t pb-6">
-								<p class="w-full text-gray-600 text-xs md:text-sm px-6">GETTING STARTED</p>
-								<div class="w-full font-bold text-xl text-gray-900 px-6">Lorem ipsum dolor sit amet.</div>
-								<p class="text-gray-800 font-serif text-base px-6 mb-5">
-									Lorem ipsum eu nunc commodo posuere et sit amet ligula. 
-								</p>
-							</a>
-						</div>
-						<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
-							<div class="flex items-center justify-between">
-								<img class="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src="http://i.pravatar.cc/300" alt="Avatar of Author">
-								<p class="text-gray-600 text-xs md:text-sm">1 MIN READ</p>
-							</div>
-						</div>
-					</div>
-
-
-
-					<!--2/3 col -->
-					<div class="w-full md:w-2/3 p-6 flex flex-col flex-grow flex-shrink">
-						<div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
-							<a href="#" class="flex flex-wrap no-underline hover:no-underline">	
-								<img src="https://source.unsplash.com/collection/325867/800x600" class="h-full w-full rounded-t pb-6">
-								<p class="w-full text-gray-600 text-xs md:text-sm px-6">GETTING STARTED</p>
-								<div class="w-full font-bold text-xl text-gray-900 px-6">Lorem ipsum dolor sit amet.</div>
-								<p class="text-gray-800 font-serif text-base px-6 mb-5">
-									Lorem ipsum eu nunc commodo posuere et sit amet ligula. 
-								</p>
-							</a>
-						</div>
-						<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
-							<div class="flex items-center justify-between">
-								<img class="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src="http://i.pravatar.cc/300" alt="Avatar of Author">
-								<p class="text-gray-600 text-xs md:text-sm">1 MIN READ</p>
-							</div>
-						</div>
-					</div>
-
-					<!--1/3 col -->
-					<div class="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-						<div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
-							<a href="#" class="flex flex-wrap no-underline hover:no-underline">
-								<img src="https://source.unsplash.com/collection/1118905/800x600" class="h-full w-full rounded-t pb-6">
-								<p class="w-full text-gray-600 text-xs md:text-sm px-6">GETTING STARTED</p>
-								<div class="w-full font-bold text-xl text-gray-900 px-6">Lorem ipsum dolor sit amet.</div>
-								<p class="text-gray-800 font-serif text-base px-6 mb-5">
-									Lorem ipsum eu nunc commodo posuere et sit amet ligula. 
-								</p>
-							</a>
-						</div>
-						<div class="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow-lg p-6">
-							<div class="flex items-center justify-between">
-								<img class="w-8 h-8 rounded-full mr-4 avatar" data-tippy-content="Author Name" src="http://i.pravatar.cc/300" alt="Avatar of Author">
-								<p class="text-gray-600 text-xs md:text-sm">1 MIN READ</p>
-							</div>
-						</div>
-					</div>
-
-				</div>
-				<!--/ Post Content-->
-						
-			</div>
-			
-			
-				<!--Subscribe-->	
-				<div class="container font-sans bg-green-100 rounded mt-8 p-4 md:p-24 text-center">
-					<h2 class="font-bold break-normal text-2xl md:text-4xl">Subscribe to Ghostwind CSS</h2>
-					<h3 class="font-bold break-normal font-normal text-gray-600 text-base md:text-xl">Get the latest posts delivered right to your inbox</h3>
-					<div class="w-full text-center pt-4">
-						<form action="#">
-							<div class="max-w-xl mx-auto p-1 pr-0 flex flex-wrap items-center">
-								<input type="email" placeholder="youremail@example.com" class="flex-1 appearance-none rounded shadow p-3 text-gray-600 mr-2 focus:outline-none">
-								<button type="submit" class="flex-1 mt-4 md:mt-0 block md:inline-block appearance-none bg-green-500 text-white text-base font-semibold tracking-wider uppercase py-4 rounded shadow hover:bg-green-400">Subscribe</button>
-							</div>
-						</form>
-					</div>
-				</div>
-				<!-- /Subscribe-->
-			
-	
-				<!--Author-->
-				<div class="flex w-full items-center font-sans p-8 md:p-24">
-					<img class="w-10 h-10 rounded-full mr-4" src="http://i.pravatar.cc/300" alt="Avatar of Author">
-					<div class="flex-1">
-						<p class="text-base font-bold text-base md:text-xl leading-none">Ghostwind CSS</p>
-						<p class="text-gray-600 text-xs md:text-base">Tailwind CSS version of Ghost's Casper theme by <a class="text-gray-800 hover:text-green-500 no-underline border-b-2 border-green-500" href="https://www.tailwindtoolbox.com">TailwindToolbox.com</a></p>
-					</div>
-					<div class="justify-end">
-					<a href="post.html" class="bg-transparent border border-gray-500 hover:border-green-500 text-xs text-gray-500 hover:text-green-500 font-bold py-2 px-4 rounded-full">Read More</a>
-					</div>
-				</div>
-				<!--/Author-->
-			
-		</div>
-	
-
-	</div>
-
-
-
-{% endblock %}
+    {% endblock %}
