@@ -38,7 +38,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 DEBUG = True
 
 ALLOWED_HOSTS = ['dishedupdining-339b98932b82.herokuapp.com','8000-jonnydaviso-dishedupdin-y6509ao3gk5.ws-eu115.gitpod.io']
-
+CSRF_TRUSTED_ORIGINS = ['https://8000-jonnydaviso-dishedupdin-y6509ao3gk5.ws-eu115.gitpod.io', 'https://dishedupdining-339b98932b82.herokuapp.com/', 'https://dishedupdining.com/']
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # Application definition
 
