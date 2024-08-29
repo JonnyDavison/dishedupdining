@@ -1,13 +1,33 @@
 from django_summernote.admin import SummernoteModelAdmin
 from django.contrib import admin
-from .models import Home, Gallery, Review
+from django.contrib.admin.models import LogEntry
+from .models import Home, Gallery, Review, Feature, FeatureItem
 
+# Custom LogEntry class and admin
+class CustomLogEntry(admin.ModelAdmin):
+    list_display = ['user', 'content_type', 'object_repr', 'action_flag', 'change_message']
+    readonly_fields = ['user', 'content_type', 'object_id', 'object_repr', 'action_flag', 'change_message']
+    search_fields = ['user__username', 'object_repr', 'change_message']
+    list_filter = ['action_flag', 'content_type']
+
+    def has_add_permission(self, request):
+        return False
+
+    def has_change_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
+
+# Only register CustomLogEntry if LogEntry is not already registered
+if not admin.site.is_registered(LogEntry):
+    admin.site.register(LogEntry, CustomLogEntry)
 
 @admin.register(Home)
 class HomeAdmin(SummernoteModelAdmin):
-    list_display = ('main_title', 'is_active')
+    list_display = ('created_on', 'is_active')
     actions = ['make_active']
-    summernote_fields = '__all__'
+    summernote_fields = ('main_title', 'sub_title', 'call_to_action',)
     
     def make_active(self, request, queryset):
         queryset.update(is_active=True)
@@ -16,6 +36,25 @@ class HomeAdmin(SummernoteModelAdmin):
     make_active.short_description = "Mark selected record as active"
 
 
+class FeatureItemInline(admin.TabularInline):
+    model = FeatureItem
+    extra = 1
+
+@admin.register(Feature)
+class FeatureAdmin(SummernoteModelAdmin):
+    list_display = ('feature_title', 'is_active')
+    actions = ['make_active']
+    summernote_fields = ('feature_title', 'feature_sub_title')
+    inlines = [FeatureItemInline]
+    
+    def make_active(self, request, queryset):
+        queryset.update(is_active=True)
+        self.message_user(request, "Selected feature is now active")
+
+    make_active.short_description = "Mark selected feature as active"
+
+
+@admin.register(Gallery)
 class GalleryAdmin(SummernoteModelAdmin):
     """ Organise the Gallery admin panel """
     list_display = (
@@ -37,10 +76,9 @@ class GalleryAdmin(SummernoteModelAdmin):
     ordering = ('name',)
     summernote_fields = ('description',)
 
-
-
+@admin.register(Review)
 class ReviewAdmin(SummernoteModelAdmin):
-    """ Organise the Gallery admin panel """
+    """ Organise the Review admin panel """
     list_display = (
         'name',
         'rating',
@@ -49,8 +87,4 @@ class ReviewAdmin(SummernoteModelAdmin):
     )
     ordering = ('name',)
     summernote_fields = ('comment',)
-
-
-# admin.site.register(Home, HomeAdmin)
-admin.site.register(Gallery, GalleryAdmin)
-admin.site.register(Review, ReviewAdmin)
+    

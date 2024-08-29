@@ -6,7 +6,8 @@ class Home(models.Model):
 
     class Meta:
         verbose_name_plural = 'Home'
-
+        
+    created_on = models.DateTimeField(auto_now_add=True,null=True, blank=True)
     logo = models.ImageField(null=True, blank=True)
     main_title = models.TextField()
     sub_title = models.TextField()
@@ -25,25 +26,28 @@ class Home(models.Model):
 
  
 class Feature(models.Model):
-    """ Feature Section Model """
-
-    class Meta:
-        verbose_name_plural = 'Feature'
-
     feature_image = models.ImageField(null=True, blank=True)
     feature_title = models.TextField()
     feature_sub_title = models.TextField()
-    feature_image = models.ImageField(null=True, blank=True)
     is_active = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.main_title
+        return self.feature_title
 
     def save(self, *args, **kwargs):
         if self.is_active:
-            # Set all other instances to inactive
             Feature.objects.filter(is_active=True).update(is_active=False)
         super(Feature, self).save(*args, **kwargs)
+        
+        
+class FeatureItem(models.Model):
+    feature = models.ForeignKey(Feature, related_name='items', on_delete=models.CASCADE)
+    icon = models.CharField(max_length=50)  # max_length to accommodate Font Awesome classes
+    title = models.CharField(max_length=100)
+    description = models.TextField()
+
+    def __str__(self):
+        return self.title
 
 
 class Gallery(models.Model):

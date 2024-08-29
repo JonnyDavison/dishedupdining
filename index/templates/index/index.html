@@ -38,74 +38,48 @@
     <!-- home section //nd -->
 
     <!-- feature section -->
-    <section class="bg-white py-10 md:py-16 xl:relative">
-
-        <div class="container max-w-screen-xl mx-auto px-4">
-
-            <div class="flex flex-col xl:flex-row justify-end">
-
-                <div class="hidden xl:block xl:absolute left-0 bottom-0 w-full">
-                    <img src="{{ MEDIA_URL }}feature-img.png" alt="Feature img">
+    <section class="bg-white py-10 md:py-16 relative overflow-hidden">
+        <div class="container max-w-screen-xl mx-auto px-4 relative z-10">
+            <div class="flex flex-col lg:flex-row justify-end">
+                {% if feature and feature_image_url %}
+                <div class="lg:absolute left-0 top-0 w-full lg:w-1/2 h-64 lg:h-full mb-8 lg:mb-0">
+                    <img src="{{ feature_image_url }}" alt="Feature image" class="w-full h-full object-cover object-center">
                 </div>
-
-                <div class="">
-
-                    <h1 class="font-semibold text-gray-900 text-xl md:text-3xl text-center leading-normal mb-6">
-                        Find out more about our most popular events
+                {% endif %}
+    
+                <div class="lg:w-1/2 lg:ml-auto text-center lg:pl-12">
+                    {% if feature %}
+                    <h1 class="font-semibold text-gray-900 text-3xl text-center leading-normal mb-6">
+                        {{ feature.feature_title|safe }}
                     </h1>
-
-                    <p class="font-normal text-gray-400 text-md md:text-xl text-center mb-16">
-                        Take the pressure out of large events<br> or enjoy an event at home by letting us do the work
+    
+                    <p class="font-normal text-gray-400 text-md md:text-xl text-center mb-30">
+                        {{ feature.feature_sub_title|safe }}
                     </p>
-
-                        <div class="grid grid-cols-12">
-                            <div class="col-span-full md:col-start-4 md:col-span-8 ">
-                                <div class="flex flex-col space-y-20">
-                                    <div class="flex flex-col sm:flex-row items-center sm:items-start">
-                                        <div class="w-full sm:w-24 flex justify-center sm:justify-start mb-5 sm:mb-0">
-                                            <div class="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center">
-                                                <i data-feather="check-circle" class="text-green-900"></i>
-                                            </div>
-                                        </div>
-                                        <div class="flex-1 text-center sm:text-left sm:ml-8">
-                                            <h4 class="font-semibold text-gray-900 text-xl mb-2">At Home Catering</h4>
-                                            <p class="font-normal text-gray-400 text-l leading-relaxed">Bespoke home catering to suit any event</p>
+                    {% endif %}
+    
+                    <div class="grid grid-cols-12">
+                        <div class="col-span-full lg:col-span-10 lg:col-start-2">
+                            <div class="flex flex-col space-y-20 mt-10">
+                                {% for item in feature_items %}
+                                <div class="flex flex-row items-center justify-center lg:justify-start mb-5">
+                                    <div class="w-24 flex-shrink-0 flex justify-center">
+                                        <div class="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center">
+                                            <i class="{{ item.icon }} text-green-900 fa-2x"></i>
                                         </div>
                                     </div>
-                        
-                                    <div class="flex flex-col sm:flex-row items-center sm:items-start">
-                                        <div class="w-full sm:w-24 flex justify-center sm:justify-start mb-5 sm:mb-0">
-                                            <div class="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center">
-                                                <i data-feather="lock" class="text-green-900"></i>
-                                            </div>
-                                        </div>
-                                        <div class="flex-1 text-center sm:text-left sm:ml-8">
-                                            <h4 class="font-semibold text-gray-900 text-xl mb-2">Finger Food & Hot Buffets</h4>
-                                            <p class="font-normal text-gray-400 text-l leading-relaxed">Delivered or served at any location</p>
-                                        </div>
-                                    </div>
-                        
-                                    <div class="flex flex-col sm:flex-row items-center sm:items-start">
-                                        <div class="w-full sm:w-24 flex justify-center sm:justify-start mb-5 sm:mb-0">
-                                            <div class="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center">
-                                                <i data-feather="credit-card" class="text-green-900"></i>
-                                            </div>
-                                        </div>
-                                        <div class="flex-1 text-center sm:text-left sm:ml-8">
-                                            <h4 class="font-semibold text-gray-900 text-xl mb-2">Work Place Catering</h4>
-                                            <p class="font-normal text-gray-400 text-l leading-relaxed">Enhance your office experience</p>
-                                        </div>
+                                    <div class="flex-grow max-w-md"> <!-- Added max-width for better text control -->
+                                        <h4 class="font-semibold text-gray-900 text-xl mb-2">{{ item.title }}</h4>
+                                        <p class="font-normal text-gray-400 text-l leading-relaxed">{{ item.description }}</p>
                                     </div>
                                 </div>
+                                {% endfor %}
                             </div>
                         </div>
-
+                    </div>
                 </div>
-
             </div>
-
-        </div> <!-- container.// -->
-
+        </div>
     </section>
     <!-- feature section //end -->
 
