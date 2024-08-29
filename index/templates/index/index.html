@@ -11,15 +11,15 @@
         <div class="container max-w-screen-xl mx-auto px-4 relative">
             <div class="flex items-center justify-center xl:justify-start">
                 <div class="mt-28 text-center xl:text-left relative z-10">
-                    <h1 class="font-semibold text-3xl md:text-4xl lg:text-5xl text-gray-900 leading-normal mb-6">Event
-                        Catering Specialists <br> Simple, Classy, Tasty.</h1>
+                    <h1 class="font-semibold text-3xl md:text-4xl lg:text-5xl text-gray-900 leading-normal mb-6">
+                        {{ home.main_title|safe }}
+                    </h1>
     
                     <p class="font-normal text-xl text-gray-400 leading-relaxed mb-12">
-                        We specialise beautiful catering from intimate meals at home <br> to large events, parties &
-                        more.
+                        {{ home.sub_title|safe }}
                     </p>
                     <p class="font-normal text-l text-gray-400 leading-relaxed mb-12">
-                        Find out what we can cater for you <br> get in touch today!
+                        {{ home.call_to_action|safe }}
                     </p>
     
                     <button
@@ -30,7 +30,9 @@
         </div>
     
         <div class="hidden xl:block xl:absolute z-0 top-0 right-0">
-            <img src="{{ MEDIA_URL }}home-img.png" alt="Home img">
+            {% if hero_image_url %}
+                <img src="{{ hero_image_url }}" alt="Home page image">
+            {% endif %}
         </div>
     </section>
     <!-- home section //nd -->
@@ -48,11 +50,13 @@
 
                 <div class="">
 
-                    <h1 class="font-semibold text-gray-900 text-xl md:text-3xl text-center leading-normal mb-6">Find out
-                        more about our most popular events</h1>
+                    <h1 class="font-semibold text-gray-900 text-xl md:text-3xl text-center leading-normal mb-6">
+                        Find out more about our most popular events
+                    </h1>
 
-                    <p class="font-normal text-gray-400 text-md md:text-xl text-center mb-16">Take the pressure out of
-                        large events<br> or enjoy an event at home by letting us do the work</p>
+                    <p class="font-normal text-gray-400 text-md md:text-xl text-center mb-16">
+                        Take the pressure out of large events<br> or enjoy an event at home by letting us do the work
+                    </p>
 
                         <div class="grid grid-cols-12">
                             <div class="col-span-full md:col-start-4 md:col-span-8 ">
@@ -107,49 +111,22 @@
 
     <!-- gallery section -->
     <section class="bg-white py-10 md:py-16">
-
         <div class="container max-w-screen-xl mx-auto px-4">
-
             <h1 class="font-semibold text-gray-900 text-4xl text-center mb-10">Our Gallery</h1>
-
-            <!-- <div class="hidden md:block flex items-center text-center space-x-10 lg:space-x-20 mb-12">
-                <a href="#"
-                    class="px-6 py-2 bg-green-800 text-white font-semibold text-xl rounded-lg hover:bg-green-600 transition ease-in-out duration-500">All</a>
-                <a href="#"
-                    class="px-6 py-2 text-gray-900 font-normal text-xl rounded-lg hover:bg-gray-200 hover:text-gray-400 transition ease-in-out duration-500">Exterior</a>
-                <a href="#"
-                    class="px-6 py-2 text-gray-900 font-normal text-xl rounded-lg hover:bg-gray-200 hover:text-gray-400 transition ease-in-out duration-500">Interior</a>
-                <a href="#"
-                    class="px-6 py-2 text-gray-900 font-normal text-xl rounded-lg hover:bg-gray-200 hover:text-gray-400 transition ease-in-out duration-500">Building</a>
-            </div> -->
-
-            <div class="flex space-x-4 md:space-x-6 lg:space-x-8">
-                <div>
-                    <img src="{{ MEDIA_URL }}gallery-1.png" alt="image"
-                        class="mb-4 md:mb-6 lg:mb-8 hover:opacity-75 transition ease-in-out duration-500">
-                    <img src="{{ MEDIA_URL }}gallery-4.png" alt="image"
-                        class="hover:opacity-75 transition ease-in-out duration-500">
+    
+            {% if gallery_images %}
+                <div class="flex flex-wrap -mx-2">
+                    {% for image_url in gallery_images %}
+                        <div class="w-1/2 md:w-1/3 lg:w-1/4 px-2 mb-4">
+                            <img src="{{ image_url }}" alt="Gallery image {{ forloop.counter }}"
+                                 class="w-full h-48 object-cover hover:opacity-75 transition ease-in-out duration-500">
+                        </div>
+                    {% endfor %}
                 </div>
-
-                <div>
-                    <img src="{{ MEDIA_URL }}gallery-2.png" alt="image"
-                        class="mb-4 md:mb-6 lg:mb-8 hover:opacity-75 transition ease-in-out duration-500">
-                    <img src="{{ MEDIA_URL }}gallery-5.png" alt="image"
-                        class="mb-3 md:mb-6 lg:mb-8 hover:opacity-75 transition ease-in-out duration-500">
-                    <img src="{{ MEDIA_URL }}gallery-6.png" alt="image"
-                        class="hover:opacity-75 transition ease-in-out duration-500">
-                </div>
-
-                <div>
-                    <img src="{{ MEDIA_URL }}gallery-3.png" alt="image"
-                        class="mb-4 md:mb-6 lg:mb-8 hover:opacity-75 transition ease-in-out duration-500">
-                    <img src="{{ MEDIA_URL }}gallery-7.png" alt="image"
-                        class="hover:opacity-75 transition ease-in-out duration-500">
-                </div>
-            </div>
-
-        </div> <!-- container.// -->
-
+            {% else %}
+                <p class="text-center text-gray-600">No images in the gallery yet.</p>
+            {% endif %}
+        </div>
     </section>
     <!-- gallery section //end -->
 

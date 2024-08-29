@@ -50,8 +50,9 @@
         <nav class="flex-wrap lg:flex items-center py-14 xl:relative z-10" x-data="{navbarOpen:false}">
 
             <div class="flex items-center justify-between mb-10 lg:mb-0">
-                <img src="{{ MEDIA_URL }}navbar-logo.png" alt="Logo img" class="w-52 md:w-80 lg:w-full">
-
+                {% if home.logo %}
+                <img src="{{ home.logo.url }}" alt="Logo img" class="w-52 md:w-80 lg:w-full">
+                {% endif %}
                 <button
                     class="lg:hidden w-10 h-10 ml-auto flex items-center justify-center text-green-700 border border-green-700 rounded-md"
                     @click="navbarOpen = !navbarOpen">
@@ -110,7 +111,7 @@
                         <img src="{{ MEDIA_URL }}footer-logo.png" alt="Image">
                     </div>
 
-                    <p class="font-light text-gray-400 text-xl mb-10">Get your dream house with <br> D’house</p>
+                    <p class="font-light text-gray-400 text-xl mb-10">Get your dream house with <br> Dished up Dining</p>
 
                     <div class="flex items-center justify-center lg:justify-start space-x-5">
                         <a href="#" class="px-3 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-green-800 hover:text-white transition ease-in-out duration-500">

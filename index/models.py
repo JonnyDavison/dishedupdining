@@ -12,9 +12,38 @@ class Home(models.Model):
     sub_title = models.TextField()
     call_to_action = models.TextField()
     hero_image = models.ImageField(null=True, blank=True)
+    is_active = models.BooleanField(default=False)
 
     def __str__(self):
         return self.main_title
+
+    def save(self, *args, **kwargs):
+        if self.is_active:
+            # Set all other instances to inactive
+            Home.objects.filter(is_active=True).update(is_active=False)
+        super(Home, self).save(*args, **kwargs)
+
+ 
+class Feature(models.Model):
+    """ Feature Section Model """
+
+    class Meta:
+        verbose_name_plural = 'Feature'
+
+    feature_image = models.ImageField(null=True, blank=True)
+    feature_title = models.TextField()
+    feature_sub_title = models.TextField()
+    feature_image = models.ImageField(null=True, blank=True)
+    is_active = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.main_title
+
+    def save(self, *args, **kwargs):
+        if self.is_active:
+            # Set all other instances to inactive
+            Feature.objects.filter(is_active=True).update(is_active=False)
+        super(Feature, self).save(*args, **kwargs)
 
 
 class Gallery(models.Model):
@@ -25,16 +54,18 @@ class Gallery(models.Model):
 
     name = models.CharField(max_length=254)
     description = models.TextField()
-    image1 = models.ImageField(null=True, blank=True)
-    image2 = models.ImageField(null=True, blank=True)
-    image3 = models.ImageField(null=True, blank=True)
-    image4 = models.ImageField(null=True, blank=True)
-    image5 = models.ImageField(null=True, blank=True)
-    image6 = models.ImageField(null=True, blank=True)
-    image7 = models.ImageField(null=True, blank=True)
-    image8 = models.ImageField(null=True, blank=True)
-    image9 = models.ImageField(null=True, blank=True)
-    image10 = models.ImageField(null=True, blank=True)
+    gallery_image1 = models.ImageField(null=True, blank=True)
+    gallery_image2 = models.ImageField(null=True, blank=True)
+    gallery_image3 = models.ImageField(null=True, blank=True)
+    gallery_image4 = models.ImageField(null=True, blank=True)
+    gallery_image5 = models.ImageField(null=True, blank=True)
+    gallery_image6 = models.ImageField(null=True, blank=True)
+    gallery_image7 = models.ImageField(null=True, blank=True)
+    gallery_image8 = models.ImageField(null=True, blank=True)
+    gallery_image9 = models.ImageField(null=True, blank=True)
+    gallery_image10 = models.ImageField(null=True, blank=True)
+    gallery_image11 = models.ImageField(null=True, blank=True)
+    gallery_image12 = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.name

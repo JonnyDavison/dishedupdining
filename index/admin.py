@@ -1,39 +1,45 @@
+from django_summernote.admin import SummernoteModelAdmin
 from django.contrib import admin
 from .models import Home, Gallery, Review
 
 
-class HomeAdmin(admin.ModelAdmin):
-    """ Organise the Home page admin panel """
-    list_display = (
-        'logo',
-        'main_title',
-        'sub_title',
-        'call_to_action',
-        'hero_image',
-    )
+@admin.register(Home)
+class HomeAdmin(SummernoteModelAdmin):
+    list_display = ('main_title', 'is_active')
+    actions = ['make_active']
+    summernote_fields = '__all__'
+    
+    def make_active(self, request, queryset):
+        queryset.update(is_active=True)
+        self.message_user(request, "Selected record is now active")
 
-    ordering = ('main_title',)
+    make_active.short_description = "Mark selected record as active"
 
-class GalleryAdmin(admin.ModelAdmin):
+
+class GalleryAdmin(SummernoteModelAdmin):
     """ Organise the Gallery admin panel """
     list_display = (
         'name',
         'description',
-        'image1',
-        'image2',
-        'image3',
-        'image4',
-        'image5',
-        'image6',
-        'image7',
-        'image8',
-        'image9',
-        'image10',
+        'gallery_image1',
+        'gallery_image2',
+        'gallery_image3',
+        'gallery_image4',
+        'gallery_image5',
+        'gallery_image6',
+        'gallery_image7',
+        'gallery_image8',
+        'gallery_image9',
+        'gallery_image10',
+        'gallery_image11',
+        'gallery_image12',
     )
     ordering = ('name',)
+    summernote_fields = ('description',)
 
 
-class ReviewAdmin(admin.ModelAdmin):
+
+class ReviewAdmin(SummernoteModelAdmin):
     """ Organise the Gallery admin panel """
     list_display = (
         'name',
@@ -42,8 +48,9 @@ class ReviewAdmin(admin.ModelAdmin):
         'image',
     )
     ordering = ('name',)
+    summernote_fields = ('comment',)
 
 
-admin.site.register(Home, HomeAdmin)
+# admin.site.register(Home, HomeAdmin)
 admin.site.register(Gallery, GalleryAdmin)
 admin.site.register(Review, ReviewAdmin)
