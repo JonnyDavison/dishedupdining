@@ -1,7 +1,7 @@
 from django_summernote.admin import SummernoteModelAdmin
 from django.contrib import admin
 from django.contrib.admin.models import LogEntry
-from .models import Home, Gallery, Review, Feature, FeatureItem
+from .models import Home, Gallery, Review, Feature, FeatureItem, ContactSubmission
 
 # Custom LogEntry class and admin
 class CustomLogEntry(admin.ModelAdmin):
@@ -88,3 +88,14 @@ class ReviewAdmin(SummernoteModelAdmin):
     ordering = ('name',)
     summernote_fields = ('comment',)
     
+
+@admin.register(ContactSubmission)
+class ContactSubmissionAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'subject', 'created_at')
+    list_filter = ('created_at',)
+    search_fields = ('name', 'email', 'subject', 'message')
+    readonly_fields = ('created_at',)
+
+    def has_add_permission(self, request):
+        # Prevent adding new submissions through the admin
+        return False
