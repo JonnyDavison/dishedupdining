@@ -1,10 +1,89 @@
 {% extends 'base.html' %}
-{% load static %}
-
 
 {% block content %}
-<h2>contact.html</h2>
+<section class="bg-white py-10 md:py-16">
+    <div class="container max-w-screen-xl mx-auto px-4 xl:relative">
+        <div class="bg-green-800 flex flex-col lg:flex-row items-center justify-evenly py-14 rounded-3xl overflow-visible">
+            <div class="text-center lg:text-left mb-10 lg:mb-0">
+                <h1 class="font-semibold text-white text-4xl md:text-5xl lg:text-7xl leading-normal mb-4">Contact Us</h1>
+                <p class="font-normal text-white text-md md:text-xl">Get in touch with us. We're here to help.</p>
+                
+                <!-- Contact Information -->
+                <div class="mt-8 space-y-4 text-white">
+                    <div class="flex items-center">
+                        <i class="fas fa-phone-alt w-6 h-6 mr-3"></i>
+                        <span>+1 (123) 456-7890</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-envelope w-6 h-6 mr-3"></i>
+                        <span>info@yourcompany.com</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-map-marker-alt w-6 h-6 mr-3"></i>
+                        <span>123 Main St, City, State 12345</span>
+                    </div>
+                </div>
 
-
-			
+                <!-- Social Media Links -->
+                <div class="mt-8">
+                    <h3 class="text-xl font-semibold mb-4 text-white">Follow Us</h3>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-white hover:text-gray-300">
+                            <i class="fab fa-facebook-f w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-gray-300">
+                            <i class="fab fa-twitter w-6 h-6"></i>
+                        </a>
+                        <a href="#" class="text-white hover:text-gray-300">
+                            <i class="fab fa-instagram w-6 h-6"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="hidden xl:block xl:absolute right-0 z-0">
+                <img src="/media/book.png" alt="Image">
+            </div>
+        
+            <section id="contact" class="bg-white bg-opacity-90 py-8 px-6 rounded-lg shadow-lg relative z-10">
+                <h2 class="text-3xl font-semibold text-center mb-6 text-green-800">Send Us a Message</h2>
+        
+                {% if form_submitted %}
+                    <p class="text-green-600 text-center mb-4">Thank you for your message. We'll get back to you soon!</p>
+                {% endif %}
+        
+                <div class="max-w-lg mx-auto pointer-events-auto">
+                    <form class="space-y-4" method="post">
+                        {% csrf_token %}
+                        <div id="div_id_name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50">
+                            <label for="id_name" class="block text-sm font-medium text-gray-700">
+                                Name<span class="asteriskField">*</span>
+                            </label>
+                            <input type="text" name="name" maxlength="100" class="textinput bg-white rounded-lg text-gray-700 border-gray-300 appearance-none px-4 py-2 w-full block focus:outline-none leading-normal border z-20" required="" id="id_name">
+                        </div>
+                        <div id="div_id_email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50">
+                            <label for="id_email" class="block text-sm font-medium text-gray-700">
+                                Email<span class="asteriskField">*</span>
+                            </label>
+                            <input type="email" name="email" maxlength="254" class="emailinput bg-white rounded-lg text-gray-700 border-gray-300 appearance-none px-4 py-2 w-full block focus:outline-none leading-normal border z-20" required="" id="id_email">
+                        </div>
+                        <div id="div_id_subject" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50">
+                            <label for="id_subject" class="block text-sm font-medium text-gray-700">
+                                Subject<span class="asteriskField">*</span>
+                            </label>
+                            <input type="text" name="subject" maxlength="200" class="textinput bg-white rounded-lg text-gray-700 border-gray-300 appearance-none px-4 py-2 w-full block focus:outline-none leading-normal border z-20" required="" id="id_subject">
+                        </div>
+                        <div id="div_id_message" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50">
+                            <label for="id_message" class="block text-sm font-medium text-gray-700">
+                                Message<span class="asteriskField">*</span>
+                            </label>
+                            <textarea name="message" cols="40" rows="10" class="textarea bg-white rounded-lg text-gray-700 border-gray-300 appearance-none px-4 py-2 w-full block focus:outline-none leading-normal border z-20" required="" id="id_message"></textarea>
+                        </div>
+                        <input type="submit" name="submit" value="Send Message" class="btn btn-primary w-full bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md transition duration-300" id="submit-id-submit">
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div> <!-- container.// -->
+</section>
 {% endblock %}

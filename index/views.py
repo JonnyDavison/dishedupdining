@@ -1,9 +1,12 @@
+from django.views import View
 from django.views.generic import TemplateView
+from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.conf import settings
 from .models import Home, Gallery, Feature, Review, ContactSubmission
 from .forms import ContactForm
 import os
+
 
 class HomePageView(TemplateView):
     template_name = 'index/index.html'
@@ -89,11 +92,41 @@ class HomePageView(TemplateView):
             context['contact_form'] = form
             return self.render_to_response(context)
 
-def about(request):
-    """
-    A view to return the about page
-    """
-    return render(request, 'index/about.html')
+
+class ContactView(View):
+    template_name = 'index/contact.html'
+
+    def get(self, request):
+        form = ContactForm()
+        context = {
+            'contact_form': form
+        }
+        return render(request, self.template_name, context)
+
+    def post(self, request):
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            submission = form.save()
+
+            # Send email
+            subject = f"New contact form submission: {submission.subject}"
+            message = f"Name: {submission.name}\nEmail: {submission.email}\n\nMessage:\n{submission.message}"
+            from_email = settings.DEFAULT_FROM_EMAIL
+            recipient_list = [settings.CONTACT_EMAIL]
+
+            send_mail(subject, message, from_email, recipient_list)
+
+            # Redirect to a thank you page or the same page with a success message
+            return redirect('contact_success')
+        
+        # If form is not valid, re-render the page with form errors
+        context = {
+            'contact_form': form
+        }
+        return render(request, self.template_name, context)
+
+def contact_success(request):
+    return render(request, 'contact_success.html')
 
 
 def services(request):
@@ -103,11 +136,11 @@ def services(request):
     return render(request, 'index/services.html')
 
 
-def contact(request):
+def about(request):
     """
-    A view to return the contact page
+    A view to return the about page
     """
-    return render(request, 'index/contact.html')
+    return render(request, 'index/about.html')
 
 
 def menu(request):
