@@ -1,5 +1,8 @@
 from django.views.generic import TemplateView
-from .models import Home, Gallery, Feature, Review
+from django.core.mail import send_mail
+from django.conf import settings
+from .models import Home, Gallery, Feature, Review, ContactSubmission
+from .forms import ContactForm
 import os
 
 class HomePageView(TemplateView):
@@ -26,16 +29,20 @@ class HomePageView(TemplateView):
         context['home'] = home_data
 
         # Gallery data
-        gallery = Gallery.objects.first()
-        if gallery:
+        active_gallery = Gallery.objects.filter(is_active=True).first()
+        if active_gallery:
             gallery_images = []
             for i in range(1, 13):  # Assuming you have 12 image fields
-                image_field = getattr(gallery, f'gallery_image{i}')
+                image_field = getattr(active_gallery, f'gallery_image{i}')
                 if image_field and os.path.isfile(image_field.path):
                     gallery_images.append(image_field.url)
             context['gallery_images'] = gallery_images
+            context['gallery_name'] = active_gallery.name
+            context['gallery_description'] = active_gallery.description
         else:
             context['gallery_images'] = []
+            context['gallery_name'] = None
+            context['gallery_description'] = None
 
         # Feature data
         feature = Feature.objects.filter(is_active=True).first()
@@ -50,11 +57,37 @@ class HomePageView(TemplateView):
             context['feature'] = None
             context['feature_items'] = []
 
-      # Review data
+        # Review data
         reviews = Review.objects.all().order_by('-created_at')
         context['reviews'] = reviews
 
+        # Add ContactForm to the context
+        context['contact_form'] = ContactForm()
+
         return context
+
+    def post(self, request, *args, **kwargs):
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            submission = form.save()
+
+            # Send email
+            subject = f"New contact form submission: {submission.subject}"
+            message = f"Name: {submission.name}\nEmail: {submission.email}\n\nMessage:\n{submission.message}"
+            from_email = settings.DEFAULT_FROM_EMAIL
+            recipient_list = [settings.CONTACT_EMAIL]
+
+            send_mail(subject, message, from_email, recipient_list)
+
+            # Add a success message to the context
+            context = self.get_context_data()
+            context['form_submitted'] = True
+            return self.render_to_response(context)
+        else:
+            # If the form is invalid, re-render the page with the form errors
+            context = self.get_context_data()
+            context['contact_form'] = form
+            return self.render_to_response(context)
 
 def about(request):
     """
