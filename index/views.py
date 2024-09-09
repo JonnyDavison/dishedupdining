@@ -126,7 +126,7 @@ class ContactView(View):
         return render(request, self.template_name, context)
 
 def contact_success(request):
-    return render(request, 'contact_success.html')
+    return render(request, 'index/contact_success.html')
 
 
 def services(request):
