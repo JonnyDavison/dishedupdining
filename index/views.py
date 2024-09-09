@@ -50,8 +50,8 @@ class HomePageView(TemplateView):
             context['feature'] = None
             context['feature_items'] = []
 
-        # Review data
-        reviews = Review.objects.all().order_by('-created_at')[:5]  # Get the 5 most recent reviews
+      # Review data
+        reviews = Review.objects.all().order_by('-created_at')
         context['reviews'] = reviews
 
         return context
