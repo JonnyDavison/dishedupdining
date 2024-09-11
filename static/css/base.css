@@ -1,6 +1,38 @@
 @import url('https://fonts.cdnfonts.com/css/kiona-2');
 
 
+
+/* Color Pallet */
+
+.bg-custom-color1{
+  background-color: #6c705f!important;
+}
+.bg-custom-color2{
+  background-color: #eee3d4!important;
+}
+.bg-custom-color3{
+  background-color: #b8b7a5!important;
+}
+.bg-custom-color4{
+  background-color: #000000!important;
+}
+
+.text-color1 {
+  color: #6c705f!important;
+}
+.text-color2 {
+  color: #eee3d4!important;
+}
+.text-color3 {
+  color: #b8b7a5!important;
+}
+.text-color4 {
+  color: #000000!important;
+}
+
+.border-color1 {
+  border-color: #6c705f;
+}
 *,
 ::before,
 ::after {

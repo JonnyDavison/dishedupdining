@@ -1,15 +1,5 @@
-/*! tailwindcss v2.2.11 | MIT License | https://tailwindcss.com */
+@import url('https://fonts.cdnfonts.com/css/kiona-2');
 
-/*! modern-normalize v1.1.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
-
-/*
-Document
-========
-*/
-
-/**
-Use a better box model (opinionated).
-*/
 
 *,
 ::before,
@@ -57,16 +47,7 @@ Improve consistency of default fonts in all browsers. (https://github.com/sindre
 */
 
 body {
-  font-family:
-		system-ui,
-		-apple-system, /* Firefox supports this but not yet `system-ui` */
-		'Segoe UI',
-		Roboto,
-		Helvetica,
-		Arial,
-		sans-serif,
-		'Apple Color Emoji',
-		'Segoe UI Emoji';
+font-family: 'Kiona', sans-serif !important;
 }
 
 /*
@@ -118,13 +99,7 @@ code,
 kbd,
 samp,
 pre {
-  font-family:
-		ui-monospace,
-		SFMono-Regular,
-		Consolas,
-		'Liberation Mono',
-		Menlo,
-		monospace;
+font-family: 'Kiona', sans-serif !important;
   /* 1 */
   font-size: 1em;
   /* 2 */
@@ -190,7 +165,7 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: inherit;
+font-family: 'Kiona', sans-serif !important;
   /* 1 */
   font-size: 100%;
   /* 1 */
@@ -373,7 +348,7 @@ ul {
  */
 
 html {
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family:'Kiona', sans-serif;
   /* 1 */
   line-height: 1.5;
   /* 2 */
@@ -385,8 +360,15 @@ html {
  */
 
 body {
-  font-family: inherit;
+  font-family: 'Kiona', sans-serif !important;
   line-height: inherit;
+}
+
+h1, .text-3xl, .md\:text-4xl, .lg\:text-5xl {
+  font-family: 'Kiona', sans-serif !important;
+}
+.font {
+  font-family: 'Kiona', sans-serif !important;
 }
 
 /**
@@ -497,6 +479,7 @@ h3,
 h4,
 h5,
 h6 {
+  font-family: 'Kiona', sans-serif;
   font-size: inherit;
   font-weight: inherit;
 }
@@ -540,7 +523,7 @@ pre,
 code,
 kbd,
 samp {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+font-family: 'Kiona', sans-serif !important;
 }
 
 /**
@@ -22839,19 +22822,19 @@ video {
 }
 
 .font-sans {
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+font-family: 'Kiona', sans-serif !important;
 }
 
 .font-serif {
-  font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+font-family: 'Kiona', sans-serif !important;
 }
 
 .font-mono {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+font-family: 'Kiona', sans-serif !important;
 }
 
 .font-body {
-  font-family: Poppins;
+font-family: 'Kiona', sans-serif !important;
 }
 
 .text-xs {
@@ -55322,19 +55305,19 @@ video {
   }
 
   .sm\:font-sans {
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: 'Kiona', sans-serif !important;
   }
 
   .sm\:font-serif {
-    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-family: 'Kiona', sans-serif !important;
   }
 
   .sm\:font-mono {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: 'Kiona', sans-serif !important;
   }
 
   .sm\:font-body {
-    font-family: Poppins;
+  font-family: 'Kiona', sans-serif !important;
   }
 
   .sm\:text-xs {
@@ -87433,19 +87416,19 @@ video {
   }
 
   .md\:font-sans {
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: 'Kiona', sans-serif !important;
   }
 
   .md\:font-serif {
-    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-family: 'Kiona', sans-serif !important;
   }
 
   .md\:font-mono {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: 'Kiona', sans-serif !important;
   }
 
   .md\:font-body {
-    font-family: Poppins;
+  font-family: 'Kiona', sans-serif !important;
   }
 
   .md\:text-xs {
@@ -119544,19 +119527,19 @@ video {
   }
 
   .lg\:font-sans {
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: 'Kiona', sans-serif !important;
   }
 
   .lg\:font-serif {
-    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-family: 'Kiona', sans-serif !important;
   }
 
   .lg\:font-mono {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: 'Kiona', sans-serif !important;
   }
 
   .lg\:font-body {
-    font-family: Poppins;
+  font-family: 'Kiona', sans-serif !important;
   }
 
   .lg\:text-xs {
@@ -151655,19 +151638,19 @@ video {
   }
 
   .xl\:font-sans {
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: 'Kiona', sans-serif !important;
   }
 
   .xl\:font-serif {
-    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-family: 'Kiona', sans-serif !important;
   }
 
   .xl\:font-mono {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: 'Kiona', sans-serif !important;
   }
 
   .xl\:font-body {
-    font-family: Poppins;
+  font-family: 'Kiona', sans-serif !important;
   }
 
   .xl\:text-xs {
@@ -183766,19 +183749,19 @@ video {
   }
 
   .\32xl\:font-sans {
-    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: 'Kiona', sans-serif !important;
   }
 
   .\32xl\:font-serif {
-    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  font-family: 'Kiona', sans-serif !important;
   }
 
   .\32xl\:font-mono {
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-family: 'Kiona', sans-serif !important;
   }
 
   .\32xl\:font-body {
-    font-family: Poppins;
+  font-family: 'Kiona', sans-serif !important;
   }
 
   .\32xl\:text-xs {
