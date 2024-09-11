@@ -92,15 +92,33 @@ class HomePageView(TemplateView):
             context['contact_form'] = form
             return self.render_to_response(context)
 
-
 class ContactView(View):
     template_name = 'index/contact.html'
 
+    def get_context_data(self, **kwargs):
+        context = kwargs
+        
+        # Home data
+        home_data = Home.objects.filter(is_active=True).first()
+        if home_data:
+            if home_data.hero_image and os.path.isfile(home_data.hero_image.path):
+                context['hero_image_url'] = home_data.hero_image.url
+            else:
+                context['hero_image_url'] = None
+            
+            if home_data.logo and os.path.isfile(home_data.logo.path):
+                context['logo_url'] = home_data.logo.url
+            else:
+                context['logo_url'] = None
+        else:
+            context['hero_image_url'] = None
+            context['logo_url'] = None
+        context['home'] = home_data
+        return context
+    
     def get(self, request):
         form = ContactForm()
-        context = {
-            'contact_form': form
-        }
+        context = self.get_context_data(contact_form=form)
         return render(request, self.template_name, context)
 
     def post(self, request):
@@ -120,31 +138,88 @@ class ContactView(View):
             return redirect('contact_success')
         
         # If form is not valid, re-render the page with form errors
-        context = {
-            'contact_form': form
-        }
+        context = self.get_context_data(contact_form=form)
         return render(request, self.template_name, context)
-
 def contact_success(request):
     return render(request, 'index/contact_success.html')
 
 
-def services(request):
-    """
-    A view to return the services page
-    """
-    return render(request, 'index/services.html')
+
+class ServicesPageView(TemplateView):
+    template_name = 'index/services.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Home data
+        home_data = Home.objects.filter(is_active=True).first()
+        if home_data:
+            if home_data.hero_image and os.path.isfile(home_data.hero_image.path):
+                context['hero_image_url'] = home_data.hero_image.url
+            else:
+                context['hero_image_url'] = None
+            
+            if home_data.logo and os.path.isfile(home_data.logo.path):
+                context['logo_url'] = home_data.logo.url
+            else:
+                context['logo_url'] = None
+        else:
+            context['hero_image_url'] = None
+            context['logo_url'] = None
+        context['home'] = home_data
+
+        return context
 
 
-def about(request):
-    """
-    A view to return the about page
-    """
-    return render(request, 'index/about.html')
 
+class AboutPageView(TemplateView):
+    template_name = 'index/about.html'
 
-def menu(request):
-    """
-    A view to return the menu page
-    """
-    return render(request, 'index/menu.html')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Home data
+        home_data = Home.objects.filter(is_active=True).first()
+        if home_data:
+            if home_data.hero_image and os.path.isfile(home_data.hero_image.path):
+                context['hero_image_url'] = home_data.hero_image.url
+            else:
+                context['hero_image_url'] = None
+            
+            if home_data.logo and os.path.isfile(home_data.logo.path):
+                context['logo_url'] = home_data.logo.url
+            else:
+                context['logo_url'] = None
+        else:
+            context['hero_image_url'] = None
+            context['logo_url'] = None
+        context['home'] = home_data
+
+        return context
+    
+    
+class MenuPageView(TemplateView):
+    template_name = 'index/menu.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        
+        # Home data
+        home_data = Home.objects.filter(is_active=True).first()
+        if home_data:
+            if home_data.hero_image and os.path.isfile(home_data.hero_image.path):
+                context['hero_image_url'] = home_data.hero_image.url
+            else:
+                context['hero_image_url'] = None
+            
+            if home_data.logo and os.path.isfile(home_data.logo.path):
+                context['logo_url'] = home_data.logo.url
+            else:
+                context['logo_url'] = None
+        else:
+            context['hero_image_url'] = None
+            context['logo_url'] = None
+        context['home'] = home_data
+
+        return context
+
