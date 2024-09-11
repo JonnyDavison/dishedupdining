@@ -367,6 +367,9 @@ body {
 h1, .text-3xl, .md\:text-4xl, .lg\:text-5xl {
   font-family: 'Kiona', sans-serif !important;
 }
+.font {
+  font-family: 'Kiona', sans-serif !important;
+}
 
 /**
  * 1. Prevent padding and border from affecting element width.

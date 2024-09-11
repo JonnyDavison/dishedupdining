@@ -53,7 +53,6 @@
             <div class="flex items-center justify-between mb-10 lg:mb-0">
                 {% if home.logo %}
                 <img src="{{ home.logo.url }}" alt="Logo img" class="h-40 md:h-30 lg:h-40 w-auto object-contain">
-                <p>ished Up Dining</p>
                 {% endif %}
 
                 <button
@@ -111,10 +110,10 @@
             <div class="flex flex-col lg:flex-row justify-between">
                 <div class="text-center lg:text-left mb-10 lg:mb-0">
                     <div class="flex justify-center lg:justify-start mb-5">
-                        <img src="{{ MEDIA_URL }}footer-logo.png" alt="Image">
+                        <img src="{{ home.logo.url }}" alt="Logo img" class="h-40 md:h-30 lg:h-40 w-auto object-contain">
                     </div>
 
-                    <p class="font-light text-gray-400 text-xl mb-10">Get your dream house with <br> Dished up Dining</p>
+                    <p class="font-light text-gray-400 text-xl mb-10">Dished up Dining</p>
 
                     <div class="flex items-center justify-center lg:justify-start space-x-5">
                         <a href="#" class="px-3 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-green-800 hover:text-white transition ease-in-out duration-500">
