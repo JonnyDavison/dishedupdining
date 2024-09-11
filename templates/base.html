@@ -16,7 +16,8 @@
 
     <!-- core css -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-
+    <link href="https://fonts.cdnfonts.com/css/kiona-2" rel="stylesheet">
+                
     {% block extra_css %}
     {% endblock %}
     <!-- favicon -->
@@ -35,8 +36,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"
         integrity="sha512-7x3zila4t2qNycrtZ31HO0NnJr8kg2VI67YLoRSyi9hGhRN66FHYWr7Axa9Y1J9tGYHVBPqIjSE1ogHrJTz51g=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -51,8 +52,10 @@
 
             <div class="flex items-center justify-between mb-10 lg:mb-0">
                 {% if home.logo %}
-                <img src="{{ home.logo.url }}" alt="Logo img" class="w-52 md:w-80 lg:w-full">
+                <img src="{{ home.logo.url }}" alt="Logo img" class="h-40 md:h-30 lg:h-40 w-auto object-contain">
+                <p>ished Up Dining</p>
                 {% endif %}
+
                 <button
                     class="lg:hidden w-10 h-10 ml-auto flex items-center justify-center text-green-700 border border-green-700 rounded-md"
                     @click="navbarOpen = !navbarOpen">
