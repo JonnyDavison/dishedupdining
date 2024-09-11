@@ -1,12 +1,14 @@
 {% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 <section class="bg-white py-10 md:py-16">
     <div class="container max-w-screen-xl mx-auto px-4 xl:relative">
-        <div class="bg-green-800 flex flex-col lg:flex-row items-center justify-evenly py-14 rounded-3xl overflow-visible">
+        <div class="bg-custom-color1 flex flex-col lg:flex-row items-center justify-evenly py-14 rounded-3xl overflow-visible">
             <div class="text-center lg:text-left mb-10 lg:mb-0">
-                <h1 class="font-semibold text-white text-4xl md:text-5xl lg:text-7xl leading-normal mb-4">Contact Us</h1>
-                <p class="font-normal text-white text-md md:text-xl">
+                <h1 class="font-semibold text-color2 text-4xl md:text-5xl lg:text-7xl leading-normal mb-4">Contact Us</h1>
+                <p class="font-normal text-color2 text-md md:text-xl">
                     We are ready to help with your next event. 
                     <br>
                     Fill in the form or contact directly us directly on 
@@ -52,10 +54,10 @@
             </div>
         
             <section id="contact" class="bg-white bg-opacity-90 py-8 px-6 rounded-lg shadow-lg relative z-10">
-                <h2 class="text-3xl font-semibold text-center mb-6 text-green-800">Send Us a Message</h2>
+                <h2 class="text-3xl font-semibold text-center mb-6 text-colo1">Send Us a Message</h2>
         
                 {% if form_submitted %}
-                    <p class="text-green-600 text-center mb-4">Thank you for your message. We'll get back to you soon!</p>
+                    <p class="text-color1 text-center mb-4">Thank you for your message. We'll get back to you soon!</p>
                 {% endif %}
         
                 <div class="max-w-lg mx-auto pointer-events-auto">
@@ -85,8 +87,7 @@
                             </label>
                             <textarea name="message" cols="40" rows="10" class="textarea bg-white rounded-lg text-gray-700 border-gray-300 appearance-none px-4 py-2 w-full block focus:outline-none leading-normal border z-20" required="" id="id_message"></textarea>
                         </div>
-                        <input type="submit" name="submit" value="Send Message" class="btn btn-primary w-full bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md transition duration-300" id="submit-id-submit">
-                    </form>
+                        <input type="submit" name="submit" value="Send Message" class="btn w-full bg-custom-color1 hover:bg-custom-color2 hover:text-color1 text-color2 font-bold py-2 px-4 rounded-md transition duration-300" id="submit-id-submit">                    </form>
                 </div>
             </section>
         </div>
