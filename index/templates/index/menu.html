@@ -1,9 +1,40 @@
 {% extends 'base.html' %}
 {% load static %}
-{% load crispy_forms_tags %}
 
 {% block content %}
+<div class="bg-gray-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            {% if home.logo %}
+            <img src="{{ home.logo.url }}" alt="Logo" class="h-12 w-auto">
+            {% endif %}
+            <h1 class="text-3xl font-bold text-gray-900">Our Menu</h1>
+        </div>
+    </header>
 
-<h2>Menu.html</h2>
-			
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 bg-white border-b border-gray-200">
+                <div class="flex justify-center">
+                    <div class="w-full max-w-3xl" style="aspect-ratio: 1 / 1.414;">
+                        <iframe 
+                            class="w-full h-full rounded-lg shadow-lg"
+                            src="https://www.canva.com/design/DAGG11uI59A/xAZrvfjCtyqdL-xfKklK5g/view?embed" 
+                            allowfullscreen="allowfullscreen" 
+                            allow="fullscreen">
+                        </iframe>
+                    </div>
+                </div>
+                <p class="text-center text-sm text-gray-600 mt-4">
+                    <a href="https://www.canva.com/design/DAGG11uI59A/xAZrvfjCtyqdL-xfKklK5g/view?utm_content=DAGG11uI59A&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link"
+                        target="_blank" rel="noopener"
+                        class="text-indigo-600 hover:text-indigo-800 transition duration-150 ease-in-out">
+                        Krumb Menu
+                    </a> by Jonny Davison
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
