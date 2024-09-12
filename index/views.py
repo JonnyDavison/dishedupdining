@@ -1,10 +1,14 @@
 from django.views import View
-from django.views.generic import TemplateView
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.conf import settings
-from .models import Home, Gallery, Feature, Review, ContactSubmission
-from .forms import ContactForm
+from django.urls import reverse_lazy
+from .models import Home, Gallery, Feature, Review, ContactSubmission, About
+from .forms import ContactForm, AboutForm
 import os
 
 
@@ -140,6 +144,7 @@ class ContactView(View):
         # If form is not valid, re-render the page with form errors
         context = self.get_context_data(contact_form=form)
         return render(request, self.template_name, context)
+    
 def contact_success(request):
     return render(request, 'index/contact_success.html')
 
@@ -172,30 +177,83 @@ class ServicesPageView(TemplateView):
 
 
 
-class AboutPageView(TemplateView):
-    template_name = 'index/about.html'
+# class AboutPageView(TemplateView):
+#     template_name = 'index/about.html'
 
+#     def get_context_data(self, **kwargs):
+#         context = super().get_context_data(**kwargs)
+        
+#         # Home data
+#         home_data = Home.objects.filter(is_active=True).first()
+#         if home_data:
+#             if home_data.hero_image and os.path.isfile(home_data.hero_image.path):
+#                 context['hero_image_url'] = home_data.hero_image.url
+#             else:
+#                 context['hero_image_url'] = None
+            
+#             if home_data.logo and os.path.isfile(home_data.logo.path):
+#                 context['logo_url'] = home_data.logo.url
+#             else:
+#                 context['logo_url'] = None
+#         else:
+#             context['hero_image_url'] = None
+#             context['logo_url'] = None
+#         context['home'] = home_data
+
+#         return context
+
+
+class AboutBaseView:
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        
-        # Home data
-        home_data = Home.objects.filter(is_active=True).first()
-        if home_data:
-            if home_data.hero_image and os.path.isfile(home_data.hero_image.path):
-                context['hero_image_url'] = home_data.hero_image.url
-            else:
-                context['hero_image_url'] = None
-            
-            if home_data.logo and os.path.isfile(home_data.logo.path):
-                context['logo_url'] = home_data.logo.url
-            else:
-                context['logo_url'] = None
-        else:
-            context['hero_image_url'] = None
-            context['logo_url'] = None
-        context['home'] = home_data
-
+        context['home'] = Home.objects.filter(is_active=True).first()
         return context
+
+class AboutListView(ListView):
+    model = About
+    template_name = 'index/about.html'
+    context_object_name = 'about'
+
+    def get_queryset(self):
+        return About.objects.filter(is_active=True).first()
+
+class AboutDetailView(AboutBaseView, DetailView):
+    model = About
+    template_name = 'index/about_detail.html'
+    context_object_name = 'about'
+
+@method_decorator(login_required, name='dispatch')
+class AboutCreateView(AboutBaseView, CreateView):
+    model = About
+    template_name = 'index/about_form.html'
+    form_class = AboutForm
+    success_url = reverse_lazy('about')
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
+
+
+class AboutUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    model = About
+    form_class = AboutForm
+    template_name = 'index/about_form.html'
+    success_url = reverse_lazy('about')
+
+    def test_func(self):
+        return self.request.user.is_superuser
+
+@method_decorator(login_required, name='dispatch')
+class AboutDeleteView(AboutBaseView, DeleteView):
+    model = About
+    template_name = 'index/about_confirm_delete.html'
+    success_url = reverse_lazy('about')
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
     
     
 class MenuPageView(TemplateView):

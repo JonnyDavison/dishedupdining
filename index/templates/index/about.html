@@ -1,10 +1,60 @@
 {% extends 'base.html' %}
 {% load static %}
 
-
 {% block content %}
-<h2>about.html</h2>
+<div class="bg-gray-100 min-h-screen">
+    <header class="bg-white shadow">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            {% if home.logo %}
+                <img src="{{ home.logo.url }}" alt="Logo" class="h-12 w-auto">
+            {% endif %}
+            <h1 class="text-3xl font-bold text-gray-900">About Us</h1>
+        </div>
+    </header>
 
+    <main>
+        <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+            {% if about %}
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                    <div class="p-6 bg-white border-b border-gray-200">
+                        <h2 class="text-2xl font-bold text-gray-900 mb-4">{{ about.title|safe }}</h2>
+                        {% if about.image %}
+                            <img src="{{ about.image.url }}" alt="{{ about.title }}" class="w-full h-64 object-cover mb-6 rounded-lg">
+                        {% endif %}
+                        <div class="prose max-w-none">
+                            {{ about.content|safe }}
+                        </div>
+                    </div>
+                </div>
+                {% if user.is_superuser %}
+                    <div class="mt-6 flex space-x-4">
+                        <a href="{% url 'about_update' about.pk %}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Edit
+                        </a>
+                        <a href="{% url 'about_delete' about.pk %}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                            Delete
+                        </a>
+                    </div>
+                {% endif %}
+            {% else %}
+                <p class="text-center text-gray-700">No about information available.</p>
+                {% if user.is_superuser %}
+                    <div class="mt-6 flex justify-center">
+                        <a href="{% url 'about_create' %}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                            Create About Page
+                        </a>
+                    </div>
+                {% endif %}
+            {% endif %}
+        </div>
+    </main>
 
-			
+    <footer class="bg-white shadow mt-8">
+        <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+            <p class="text-center text-gray-500 text-sm">
+                © {% now "Y" %} Your Company Name. All rights reserved.
+            </p>
+        </div>
+    </footer>
+</div>
 {% endblock %}

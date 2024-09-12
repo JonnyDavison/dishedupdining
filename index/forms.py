@@ -1,7 +1,10 @@
 from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
-from .models import ContactSubmission
+from django_summernote.widgets import SummernoteWidget
+from .models import ContactSubmission, About
+
+
 
 class ContactForm(forms.ModelForm):
     class Meta:
@@ -22,3 +25,12 @@ class ContactForm(forms.ModelForm):
             'message',
             Submit('submit', 'Send Message', css_class='w-full bg-green-700 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-md transition duration-300')
         )
+        
+
+class AboutForm(forms.ModelForm):
+    class Meta:
+        model = About
+        fields = ['title', 'content', 'image', 'is_active']
+        widgets = {
+            'content': SummernoteWidget(),
+        }

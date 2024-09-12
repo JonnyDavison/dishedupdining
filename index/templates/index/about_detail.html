@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="bg-gray-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <h1 class="h-12 w-auto text-3xl font-bold text-gray-900">Dished Up Dining</h1>
+
+            <h1 class="text-3xl font-bold text-gray-900">{{ about.title|safe }}</h1>
+        </div>
+    </header>
+
+
+        <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 bg-white border-b border-gray-200">
+                    {% if about.image %}
+                        <img src="{{ about.image.url }}" alt="{{ about.title }}" class="w-full h-64 object-cover mb-6 rounded-lg">
+                    {% endif %}
+                    <div class="prose max-w-none">
+                        {{ about.content|safe }}
+                    </div>
+                </div>
+            </div>
+
+            {% if user.is_superuser %}
+                <div class="mt-6 flex space-x-4">
+                    <a href="{% url 'about_update' about.pk %}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Edit
+                    </a>
+                    <a href="{% url 'about_delete' about.pk %}" class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                        Delete
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+
+{% endblock %}
