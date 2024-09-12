@@ -209,7 +209,7 @@ class AboutBaseView:
         context['home'] = Home.objects.filter(is_active=True).first()
         return context
 
-class AboutListView(ListView):
+class AboutListView(AboutBaseView, ListView):
     model = About
     template_name = 'index/about.html'
     context_object_name = 'about'
@@ -235,7 +235,8 @@ class AboutCreateView(AboutBaseView, CreateView):
         return super().dispatch(request, *args, **kwargs)
 
 
-class AboutUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+@method_decorator(login_required, name='dispatch')
+class AboutUpdateView(AboutBaseView, LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = About
     form_class = AboutForm
     template_name = 'index/about_form.html'
@@ -243,6 +244,11 @@ class AboutUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         return self.request.user.is_superuser
+
+    def dispatch(self, request, *args, **kwargs):
+        if not self.test_func():
+            return self.handle_no_permission()
+        return super().dispatch(request, *args, **kwargs)
 
 @method_decorator(login_required, name='dispatch')
 class AboutDeleteView(AboutBaseView, DeleteView):
