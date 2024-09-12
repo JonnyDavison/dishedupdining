@@ -1,4 +1,5 @@
 from django.views import View
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -7,8 +8,8 @@ from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from django.conf import settings
 from django.urls import reverse_lazy
-from .models import Home, Gallery, Feature, Review, ContactSubmission, About
-from .forms import ContactForm, AboutForm
+from .models import Home, Gallery, Feature, Review, ContactSubmission, About, Service
+from .forms import ContactForm, AboutForm, ServiceForm 
 import os
 
 
@@ -150,57 +151,50 @@ def contact_success(request):
 
 
 
-class ServicesPageView(TemplateView):
-    template_name = 'index/services.html'
-
+class ServiceBaseView:
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        
-        # Home data
-        home_data = Home.objects.filter(is_active=True).first()
-        if home_data:
-            if home_data.hero_image and os.path.isfile(home_data.hero_image.path):
-                context['hero_image_url'] = home_data.hero_image.url
-            else:
-                context['hero_image_url'] = None
-            
-            if home_data.logo and os.path.isfile(home_data.logo.path):
-                context['logo_url'] = home_data.logo.url
-            else:
-                context['logo_url'] = None
-        else:
-            context['hero_image_url'] = None
-            context['logo_url'] = None
-        context['home'] = home_data
-
+        context['home'] = Home.objects.filter(is_active=True).first()
         return context
 
+class ServiceListView(ServiceBaseView, ListView):
+    model = Service
+    template_name = 'index/service_list.html'
+    context_object_name = 'services'
 
+    def get_queryset(self):
+        return Service.objects.filter(is_active=True)
 
-# class AboutPageView(TemplateView):
-#     template_name = 'index/about.html'
+class ServiceDetailView(ServiceBaseView, DetailView):
+    model = Service
+    template_name = 'index/service_detail.html'
+    context_object_name = 'service'
 
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data(**kwargs)
-        
-#         # Home data
-#         home_data = Home.objects.filter(is_active=True).first()
-#         if home_data:
-#             if home_data.hero_image and os.path.isfile(home_data.hero_image.path):
-#                 context['hero_image_url'] = home_data.hero_image.url
-#             else:
-#                 context['hero_image_url'] = None
-            
-#             if home_data.logo and os.path.isfile(home_data.logo.path):
-#                 context['logo_url'] = home_data.logo.url
-#             else:
-#                 context['logo_url'] = None
-#         else:
-#             context['hero_image_url'] = None
-#             context['logo_url'] = None
-#         context['home'] = home_data
+class ServiceCreateView(LoginRequiredMixin, UserPassesTestMixin, ServiceBaseView, CreateView):
+    model = Service
+    template_name = 'index/service_form.html'
+    form_class = ServiceForm
+    success_url = reverse_lazy('service_list')
 
-#         return context
+    def test_func(self):
+        return self.request.user.is_superuser
+
+class ServiceUpdateView(LoginRequiredMixin, UserPassesTestMixin, ServiceBaseView, UpdateView):
+    model = Service
+    form_class = ServiceForm
+    template_name = 'index/service_form.html'
+    success_url = reverse_lazy('service_list')
+
+    def test_func(self):
+        return self.request.user.is_superuser
+
+class ServiceDeleteView(LoginRequiredMixin, UserPassesTestMixin, ServiceBaseView, DeleteView):
+    model = Service
+    template_name = 'index/service_confirm_delete.html'
+    success_url = reverse_lazy('service_list')
+
+    def test_func(self):
+        return self.request.user.is_superuser
 
 
 class AboutBaseView:

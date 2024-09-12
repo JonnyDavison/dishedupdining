@@ -2,7 +2,7 @@ from django import forms
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Submit
 from django_summernote.widgets import SummernoteWidget
-from .models import ContactSubmission, About
+from .models import ContactSubmission, About, Service
 
 
 
@@ -33,4 +33,12 @@ class AboutForm(forms.ModelForm):
         fields = ['title', 'content', 'image', 'is_active']
         widgets = {
             'content': SummernoteWidget(),
+        }
+        
+class ServiceForm(forms.ModelForm):
+    class Meta:
+        model = Service
+        fields = ['name', 'sub_title', 'description', 'image', 'is_active', 'price']
+        widgets = {
+            'description': SummernoteWidget(),
         }

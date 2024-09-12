@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="bg-gray-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow">
+        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            {% if home.logo %}
+            <img src="{{ home.logo.url }}" alt="Logo" class="h-12 w-auto">
+            {% endif %}
+            <h1 class="text-3xl font-bold text-gray-900">Our Services</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container max-w-screen-xl mx-auto px-4 py-10 md:py-16 relative z-10">
+            {% if user.is_superuser %}
+            <div class="mb-6 text-center">
+                <a href="{% url 'service_create' %}" class="bg-custom-color1 hover:bg-custom-color2 hover:text-colo1 text-color2 font-bold py-2 px-4 rounded">
+                    Add New Service
+                </a>
+            </div>
+            {% endif %}
+            
+            {% if services %}
+            <div class="space-y-20">
+                {% for service in services %}
+                <section class="bg-white py-10 md:py-16 relative overflow-hidden rounded-lg shadow-sm">
+                    <div class="flex flex-col lg:flex-row justify-end">
+                        {% if service.image %}
+                        <div class="lg:absolute left-0 top-0 w-full lg:w-1/2 h-64 lg:h-full mb-8 lg:mb-0">
+                            <img src="{{ service.image.url }}" alt="{{ service.name }}"
+                                class="w-full h-full object-cover object-center">
+                        </div>
+                        {% endif %}
+
+                        <div class="lg:w-1/2 lg:ml-auto text-center lg:text-left lg:pl-12">
+                            <h2 class="font-semibold text-gray-900 text-3xl leading-normal mb-6">
+                                {{ service.name }}
+                            </h2>
+
+                            <p class="font-normal text-gray-400 text-md md:text-xl mb-6">
+                                {{ service.sub_title }}
+                            </p>
+
+                            <div class="text-gray-600 mb-6">
+                                {{ service.description|safe|truncatewords:50 }}
+                            </div>
+
+                            {% if service.price %}
+                            <p class="text-lg font-semibold text-gray-900 mb-6">Price: ${{ service.price }}</p>
+                            {% endif %}
+
+                            <div class="flex justify-center lg:justify-start space-x-4">
+                                <a href="{% url 'service_detail' service.pk %}" class="bg-custom-color1 hover:bg-custom-color2 hover:text-colo1 text-color2 font-bold py-2 px-4 rounded">
+                                    Learn More
+                                </a>
+                                {% if user.is_superuser %}
+                                <a href="{% url 'service_update' service.pk %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                                    Edit
+                                </a>
+                                <a href="{% url 'service_delete' service.pk %}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                                    Delete
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="text-center text-gray-700">No services available at the moment.</p>
+            {% endif %}
+        </div>
+    </main>
+</div>
+{% endblock %}
