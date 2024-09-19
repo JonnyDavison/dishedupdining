@@ -17,7 +17,7 @@
     <!-- core css -->
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link href="https://fonts.cdnfonts.com/css/kiona-2" rel="stylesheet">
-                
+
     {% block extra_css %}
     {% endblock %}
     <!-- favicon -->
@@ -89,12 +89,11 @@
 
             </ul>
 
-            <button
-                class="px-5 py-3 lg:block border-2 rounded-lg font-semibold text-color1 border-color1 text-lg hover:bg-custom-color3 
-                hover:text-white transition ease-linear duration-500"
+            <a class="px-5 py-3 lg:block border-2 rounded-lg font-semibold text-color1 border-color1 text-lg hover:bg-custom-color3 
+                hover:text-white transition ease-linear duration-500" href="{% url 'contact' %}"
                 :class="{'hidden':!navbarOpen,'flex':navbarOpen}">
                 Request quote
-            </button>
+            </a>
 
         </nav>
     </div>
@@ -104,77 +103,97 @@
 
 {% endblock %}
 
-     <!-- footer -->
-     <footer class="bg-white py-10 md:py-16">
+<!-- footer -->
+<footer class="bg-white py-10 md:py-16">
 
-        <div class="container max-w-screen-xl mx-auto px-4">
+    <div class="container max-w-screen-xl mx-auto px-4">
 
-            <div class="flex flex-col lg:flex-row justify-between">
-                <div class="text-center lg:text-left mb-10 lg:mb-0">
-                    <div class="flex justify-center lg:justify-start mb-5">
+        <div class="flex flex-col lg:flex-row justify-between">
+            <div class="text-center lg:text-left mb-10 lg:mb-0">
+                <div class="flex justify-center lg:justify-start mb-5">
+                    <a href="{% url 'index' %}">
                         <img src="{{ home.logo.url }}" alt="Logo img" class="h-40 md:h-30 lg:h-40 w-auto object-contain">
-                    </div>
-
-                    <p class="font-light text-gray-400 text-xl mb-10">Dished up Dining</p>
-
-                    <div class="flex items-center justify-center lg:justify-start space-x-5">
-                        <a href="#" class="px-3 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-green-800 hover:text-white transition ease-in-out duration-500">
-                            <i data-feather="facebook"></i>
-                        </a>
-
-                        <a href="#" class="px-3 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-green-800 hover:text-white transition ease-in-out duration-500">
-                            <i data-feather="twitter"></i>
-                        </a>
-
-                        <a href="#" class="px-3 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-green-800 hover:text-white transition ease-in-out duration-500">
-                            <i data-feather="linkedin"></i>
-                        </a>
-                    </div>
+                    </a>
                 </div>
 
-                <div class="text-center lg:text-left mb-10 lg:mb-0">
-                    <h4 class="font-semibold text-gray-900 text-2xl mb-6">Sitemap</h4>
+                <p class="font-light text-gray-400 text-xl mb-10 lg:ps-8">Dished up Dining</p>
 
-                    <a href="#" class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Home</a>
+                <div class="flex items-center justify-center space-x-5">
+                    <a href="https://www.facebook.com/dishedupdeli/" target="_blank"
+                        class="px-3 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-green-800 hover:text-white transition ease-in-out duration-500">
+                        <i data-feather="facebook"></i>
+                    </a>
 
-                    <a href="#" class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Features</a>
-                    
-                    <a href="#" class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Gallery</a>
-                    
-                    <a href="#" class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Testimoni</a>
-                    
-                    <a href="#" class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Book a meeting</a>
-                </div>
+                    <a href="https://www.instagram.com/dishedupdining/"
+                        class="px-3 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-green-800 hover:text-white transition ease-in-out duration-500">
+                        <i data-feather="instagram"></i>
+                    </a>
 
-                <div class="text-center lg:text-left mb-10 lg:mb-0">
-                    <h4 class="font-semibold text-gray-900 text-2xl mb-6">Landing</h4>
-
-                    <a href="#" class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Mobile App</a>
-
-                    <a href="#" class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Property</a>
-                    
-                    <a href="#" class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Personal Website</a>
-                    
-                    <a href="#" class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Web Developer</a>
-                    
-                    <a href="#" class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Online Course</a>
-
-                    <a href="#" class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Donation</a>
-                </div>
-
-                <div class="text-center lg:text-left">
-                    <h4 class="font-semibold text-gray-900 text-2xl mb-6">Utility</h4>
-
-                    <a href="#" class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">FAQ</a>
-
-                    <a href="#" class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Terms & Conditions</a>
+                    <a href="mailto:info@dishedupdining.com"
+                        class="px-3 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-green-800 hover:text-white transition ease-in-out duration-500">
+                        <i data-feather="mail"></i>
+                    </a>
                 </div>
             </div>
 
-        </div> <!-- container.// -->
+            <div class="text-center lg:text-left mb-10 lg:mb-0">
+                <h4 class="font-semibold text-gray-900 text-2xl mb-6">Sitemap</h4>
 
-    </footer>
-    <!-- footer //end -->
+                <a href="{% url 'index' %}"
+                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Home</a>
+
+                <a href="{% url 'about' %}"
+                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">About
+                    Us</a>
+
+                <a href="{% url 'service_list' %}"
+                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Services</a>
+
+                <a href="{% url 'contact' %}"
+                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Contact
+                    Us</a>
+
+                <a href="{% url 'menu' %}"
+                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Menu</a>
+            </div>
+
+            <div class="text-center lg:text-left mb-10 lg:mb-0">
+                <h4 class="font-semibold text-gray-900 text-2xl mb-6">Contact</h4>
+
+                <a href="#"
+                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">
+                    Address
+                </a>
+
+                <a href="#"
+                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Bloomfield</a>
+
+                <a href="#"
+                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Belfast</a>
+
+                <a href="#"
+                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">BT5
+                    5JQ</a>
+
+
+            </div>
+
+            <div class="text-center lg:text-left">
+                <h4 class="font-semibold text-gray-900 text-2xl mb-6">Contact</h4>
+
+                <a href="mailto:info@dishedupdining.com"
+                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">info@dishedupdining.com</a>
+
+                <a href="#"
+                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">07703728877</a>
+
+            </div>
+        </div>
+
+    </div> <!-- container.// -->
+
+</footer>
+<!-- footer //end -->
 
 
 {% block postloadjs %}
