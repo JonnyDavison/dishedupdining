@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="flex h-screen bg-gray-100">
+    {% include 'dashboard/dashboard_sidebar.html' %}
+    
+    <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
+        <div class="container mx-auto px-6 py-8">
+            <h3 class="text-gray-700 text-3xl font-medium mb-6">Delete Review</h3>
+            <div class="bg-white shadow-md rounded my-6 p-6">
+                <p class="text-gray-700 mb-4">Are you sure you want to delete the review by {{ review.name }}?</p>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="flex items-center justify-between mt-6">
+                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            Confirm Delete
+                        </button>
+                        <a href="{% url 'review_list' %}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

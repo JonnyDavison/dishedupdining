@@ -6,42 +6,71 @@
 {% block content %}
 <div class="flex h-screen bg-gray-100">
     {% include 'dashboard/dashboard_sidebar.html' %}
-    
+
     <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
         <div class="container mx-auto px-6 py-8">
             <h3 class="text-gray-700 text-3xl font-medium mb-6">Edit Gallery: {{ gallery.name }}</h3>
-            <form method="post" enctype="multipart/form-data" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <form method="POST" enctype="multipart/form-data" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 {% csrf_token %}
-                {{ form.name|as_crispy_field }}
-                {{ form.description|as_crispy_field }}
-                {{ form.is_active|as_crispy_field }}
-                
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="{{ form.name.id_for_label }}">
+                    </label>
+                    {{ form.name|as_crispy_field }}
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="{{ form.description.id_for_label }}">
+                        
+                    </label>
+                    {{ form.description|as_crispy_field }}
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="{{ form.is_active.id_for_label }}">
+                        
+                    </label>
+                    {{ form.is_active|as_crispy_field }}
+                </div>
+
                 <div class="mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                     {% for field in form %}
-                        {% if field.name|startswith:'gallery_image' %}
-                            <div class="mb-4">
-                                <label class="block text-gray-700 text-sm font-bold mb-2" for="{{ field.id_for_label }}">
-                                    {{ field.label }}
-                                </label>
-                                {% if field.value %}
-                                    <img src="{{ field.value.url }}" alt="{{ field.label }}" class="mb-2 h-32 w-full object-cover rounded">
-                                {% endif %}
-                                {{ field }}
-                            </div>
+                    {% if field.name|startswith:'gallery_image' %}
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2" for="{{ field.id_for_label }}">
+                            {{ field.label }}
+                        </label>
+                        {% if field.value %}
+                        <img src="{{ field.value.url }}" alt="{{ field.label }}"
+                            class="mb-2 h-32 w-full object-cover rounded">
                         {% endif %}
+                        <input type="file" name="{{ field.name }}" id="{{ field.id_for_label }}"
+                            class="form-control-file">
+                        {% if field.value %}
+                        <div class="mt-2">
+                            <input type="checkbox" name="{{ field.name }}-clear" id="{{ field.name }}-clear_id">
+                            <label for="{{ field.name }}-clear_id" class="text-sm text-gray-600">Clear current
+                                image</label>
+                        </div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
                     {% endfor %}
                 </div>
 
                 <div class="flex items-center justify-between mt-6">
-                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    <button type="submit"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                         Save Changes
                     </button>
-                    <a href="{% url 'gallery_list' %}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    <a href="{% url 'gallery_list' %}"
+                        class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                         Back to Gallery List
                     </a>
                 </div>
             </form>
         </div>
     </main>
+
 </div>
 {% endblock %}

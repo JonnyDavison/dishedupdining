@@ -88,9 +88,10 @@ class Review(models.Model):
     comment = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     image = models.ImageField(null=True, blank=True)
+    is_approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name
+        return f"Review by {self.author}"
 
 
 class ContactSubmission(models.Model):
@@ -99,6 +100,7 @@ class ContactSubmission(models.Model):
     subject = models.CharField(max_length=200)
     message = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)
 
     def __str__(self):
         return f"{self.name} - {self.subject}"

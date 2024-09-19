@@ -1,5 +1,5 @@
 from django import forms
-from index.models import Home, Feature, Gallery
+from index.models import Home, Feature, Gallery, Review, Service, About
 from django_summernote.widgets import SummernoteWidget
 
 class HomeForm(forms.ModelForm):
@@ -103,3 +103,25 @@ class GalleryForm(forms.ModelForm):
             if image.content_type not in ['image/jpeg', 'image/png', 'image/gif']:
                 raise forms.ValidationError(f"{field_name}: Please upload a JPEG, PNG or GIF image.")
         return image
+    
+
+class ReviewForm(forms.ModelForm):
+    class Meta:
+        model = Review
+        fields = ['name', 'rating', 'comment', 'image', 'is_approved']
+        
+
+class ServiceForm(forms.ModelForm):
+    class Meta:
+        model = Service
+        fields = ['name', 'sub_title', 'description', 'image', 'is_active', 'price']
+        
+        
+
+class AboutForm(forms.ModelForm):
+    class Meta:
+        model = About
+        fields = ['title', 'sub_title', 'content', 'image', 'is_active']
+        widgets = {
+            'content': forms.Textarea(attrs={'rows': 10}),
+        }

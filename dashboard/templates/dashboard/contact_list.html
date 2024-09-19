@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="flex h-screen bg-gray-100">
+    {% include 'dashboard/dashboard_sidebar.html' %}
+    
+    <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
+        <div class="container mx-auto px-6 py-8">
+            <h3 class="text-gray-700 text-3xl font-medium mb-6">Contact Submissions</h3>
+            
+            <div class="bg-white shadow-md rounded my-6">
+                <div class="px-6 py-4">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Unread Contacts</h2>
+                    {% for contact in unread_contacts %}
+                        <div class="border-b border-gray-200 py-3 flex justify-between items-center">
+                            <div>
+                                <a href="{% url 'contact_detail' contact.id %}" class="text-blue-500 hover:text-blue-700">
+                                    {{ contact.name }} - {{ contact.subject }}
+                                </a>
+                                <span class="text-sm text-gray-500 ml-2">{{ contact.created_at|date:"M d, Y" }}</span>
+                            </div>
+                            <a href="{% url 'toggle_contact_read_status' contact.id %}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded">
+                                Mark as Read
+                            </a>
+                        </div>
+                    {% empty %}
+                        <p>No unread contacts.</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="bg-white shadow-md rounded my-6">
+                <div class="px-6 py-4">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-4">Read Contacts</h2>
+                    {% for contact in read_contacts %}
+                        <div class="border-b border-gray-200 py-3 flex justify-between items-center">
+                            <div>
+                                <a href="{% url 'contact_detail' contact.id %}" class="text-gray-600 hover:text-gray-800">
+                                    {{ contact.name }} - {{ contact.subject }}
+                                </a>
+                                <span class="text-sm text-gray-500 ml-2">{{ contact.created_at|date:"M d, Y" }}</span>
+                            </div>
+                            <a href="{% url 'toggle_contact_read_status' contact.id %}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-3 rounded">
+                                Mark as Unread
+                            </a>
+                        </div>
+                    {% empty %}
+                        <p>No read contacts.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}
