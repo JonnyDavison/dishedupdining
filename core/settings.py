@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     
     'index',
     'dashboard',
+    'profiles',
 ]
 
 MIDDLEWARE = [
@@ -99,9 +100,11 @@ AUTHENTICATION_BACKENDS = [
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
+# Allauth configuration
 SITE_ID = 1
-LOGIN_REDIRECT_URL = '/'
 ACCOUNT_EMAIL_VERIFICATION = 'none'  # Set to 'mandatory' if you want to enforce email verification
+LOGIN_REDIRECT_URL = '/dashboard/'  # Redirect to home after login
+LOGOUT_REDIRECT_URL = '/'  # Redirect to home after logout
 
 WSGI_APPLICATION = 'core.wsgi.application'
 

@@ -16,5 +16,17 @@
         <a href="{% url 'service_list' %}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Services</a>
         <a href="{% url 'about_list' %}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">About</a>
         <a href="{% url 'contact_list' %}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Contact Submissions</a>
+        
+        {% if user.is_superuser %}
+        <a href="{% url 'user_list' %}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">User Management</a>
+        <a href="{% url 'register_user' %}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Register New User</a>
+        {% endif %}
+       
+        <form method="post" action="{% url 'logout' %}" class="inline">
+            {% csrf_token %}
+            <button type="submit" class="block py-2 px-4 text-sm text-red-700 hover:bg-red-200">
+                Logout
+            </button>
+        </form>
     </nav>
 </aside>
