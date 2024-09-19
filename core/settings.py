@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'crispy_tailwind',
     
     'index',
+    'dashboard',
 ]
 
 MIDDLEWARE = [

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+    {{ form.media }}
+{% endblock %}
+
+{% block content %}
+<div class="flex h-screen bg-gray-100">
+    {% include 'dashboard/dashboard_sidebar.html' %}
+    
+    <!-- Main Content -->
+    <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <h3 class="text-gray-700 text-3xl font-medium mb-6">Edit Home Page</h3>
+            <form method="post" enctype="multipart/form-data" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+                {% csrf_token %}
+                <div class="mb-4">
+                    <label for="{{ form.logo.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
+                        Logo
+                    </label>
+                    {% if home.logo %}
+                        <img src="{{ home.logo.url }}" alt="Current Logo" class="mb-2 h-16 w-auto">
+                    {% endif %}
+                    {{ form.logo }}
+                </div>
+                <div class="mb-4">
+                    <label for="{{ form.main_title.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
+                        Main Title
+                    </label>
+                    {{ form.main_title }}
+                </div>
+                <div class="mb-4">
+                    <label for="{{ form.sub_title.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
+                        Sub Title
+                    </label>
+                    {{ form.sub_title }}
+                </div>
+                <div class="mb-4">
+                    <label for="{{ form.call_to_action.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
+                        Call to Action
+                    </label>
+                    {{ form.call_to_action }}
+                </div>
+                <div class="mb-4">
+                    <label for="{{ form.hero_image.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
+                        Hero Image
+                    </label>
+                    {% if home.hero_image %}
+                        <img src="{{ home.hero_image.url }}" alt="Current Hero Image" class="mb-2 h-32 w-auto">
+                    {% endif %}
+                    {{ form.hero_image }}
+                </div>
+                <div class="mb-4">
+                    {{ form.is_active|as_crispy_field }}
+                </div>
+                <div class="flex items-center justify-between">
+                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </main>
+</div>
+{% endblock %}
