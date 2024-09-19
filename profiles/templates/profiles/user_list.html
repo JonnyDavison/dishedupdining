@@ -2,34 +2,42 @@
 {% load static %}
 
 {% block content %}
-{% if user.is_superuser %}
-<div class="container mx-auto px-4 py-8">
-    <h2 class="text-2xl font-bold mb-4">User List</h2>
-    <div class="bg-white shadow-md rounded my-6">
-        <table class="min-w-full table-auto">
-            <thead>
-                <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                    <th class="py-3 px-6 text-left">Username</th>
-                    <th class="py-3 px-6 text-left">Email</th>
-                    <th class="py-3 px-6 text-center">Actions</th>
-                </tr>
-            </thead>
-            <tbody class="text-gray-600 text-sm font-light">
-                {% for user in users %}
-                <tr class="border-b border-gray-200 hover:bg-gray-100">
-                    <td class="py-3 px-6 text-left whitespace-nowrap">{{ user.username }}</td>
-                    <td class="py-3 px-6 text-left">{{ user.email }}</td>
-                    <td class="py-3 px-6 text-center">
-                        <a href="{% url 'edit_user' user.id %}" class="text-blue-600 hover:text-blue-900 mr-2">Edit</a>
-                        <a href="{% url 'delete_user' user.id %}" class="text-red-600 hover:text-red-900">Delete</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+<div class="flex">
+    <!-- Dashboard Sidebar -->
+    {% include 'dashboard/dashboard_sidebar.html' %}
+
+    <!-- Main Content -->
+    <div class="flex-1">
+        {% if user.is_superuser %}
+        <div class="container mx-auto px-4 py-8">
+            <h2 class="text-2xl font-bold mb-4">User List</h2>
+            <div class="bg-white shadow-md rounded my-6">
+                <table class="min-w-full table-auto">
+                    <thead>
+                        <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
+                            <th class="py-3 px-6 text-left">Username</th>
+                            <th class="py-3 px-6 text-left">Email</th>
+                            <th class="py-3 px-6 text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-gray-600 text-sm font-light">
+                        {% for user in users %}
+                        <tr class="border-b border-gray-200 hover:bg-gray-100">
+                            <td class="py-3 px-6 text-left whitespace-nowrap">{{ user.username }}</td>
+                            <td class="py-3 px-6 text-left">{{ user.email }}</td>
+                            <td class="py-3 px-6 text-center">
+                                <a href="{% url 'edit_user' user.id %}" class="text-blue-600 hover:text-blue-900 mr-2">Edit</a>
+                                <a href="{% url 'delete_user' user.id %}" class="text-red-600 hover:text-red-900">Delete</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% else %}
+        <p class="text-center text-red-500 mt-8">You do not have permission to access this page.</p>
+        {% endif %}
     </div>
 </div>
-{% else %}
-<p class="text-center text-red-500 mt-8">You do not have permission to access this page.</p>
-{% endif %}
 {% endblock %}

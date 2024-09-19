@@ -5,7 +5,7 @@ from django.dispatch import receiver
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    # Add any additional fields here if needed in the future
+    # Add any additional fields you want in the profile
 
     def __str__(self):
         return self.user.username

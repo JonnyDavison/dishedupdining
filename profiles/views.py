@@ -4,6 +4,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .forms import CustomUserCreationForm, CustomUserChangeForm
+from index.models import Home
 
 def superuser_required(view_func):
     decorated_view_func = login_required(user_passes_test(lambda u: u.is_superuser)(view_func))
@@ -11,6 +12,8 @@ def superuser_required(view_func):
 
 @superuser_required
 def register_user(request):
+    home = Home.objects.filter(is_active=True).first()
+     
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -19,15 +22,28 @@ def register_user(request):
             return redirect('user_list')
     else:
         form = CustomUserCreationForm()
-    return render(request, 'profiles/register.html', {'form': form})
+        
+    context = {
+        'home': home,
+        'form': form,
+    }
+    return render(request, 'profiles/register.html', context)
 
 @superuser_required
 def user_list(request):
+    home = Home.objects.filter(is_active=True).first()
     users = User.objects.all()
-    return render(request, 'profiles/user_list.html', {'users': users})
+    
+    context = {
+        'home': home,
+        'users': users,
+    }
+    
+    return render(request, 'profiles/user_list.html', context)
 
 @superuser_required
 def edit_user(request, user_id):
+    home = Home.objects.filter(is_active=True).first()
     user = get_object_or_404(User, id=user_id)
     if request.method == 'POST':
         form = CustomUserChangeForm(request.POST, instance=user)
@@ -37,18 +53,31 @@ def edit_user(request, user_id):
             return redirect('user_list')
     else:
         form = CustomUserChangeForm(instance=user)
-    return render(request, 'profiles/edit_user.html', {'form': form, 'user': user})
+        
+    context = {
+        'form': form,
+        'user': user,
+        'home': home,
+    }    
+    return render(request, 'profiles/edit_user.html', context)
 
 @superuser_required
 def delete_user(request, user_id):
+    home = Home.objects.filter(is_active=True).first()
     user = get_object_or_404(User, id=user_id)
     if request.method == 'POST':
         user.delete()
         messages.success(request, f'User {user.username} has been deleted successfully.')
         return redirect('user_list')
-    return render(request, 'profiles/delete_user.html', {'user': user})
+    
+    context = {
+        'user': user,
+        'home': home,
+    }
+    return render(request, 'profiles/delete_user.html', context)
 
 def login_view(request):
+    home = Home.objects.filter(is_active=True).first()
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -58,4 +87,8 @@ def login_view(request):
             return redirect('dashboard_home')  # Redirect to dashboard after login
         else:
             messages.error(request, 'Invalid username or password.')
-    return render(request, 'profiles/login.html')
+            
+    context = {
+        'home': home,
+    }
+    return render(request, 'profiles/login.html', context)
