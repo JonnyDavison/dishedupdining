@@ -202,10 +202,14 @@
                 <a href="{% url 'login' %}" class="text-gray-400 text-md mb-6 hover:text-gray-800">Login</a>
             {% else %}
                 <a href="{% url 'dashboard_home' %}" class="text-gray-400 text-md mb-6 hover:text-gray-800">Dashboard</a>
-                <a href="{% url 'logout' %}" class="text-gray-400 text-md mb-6 hover:text-gray-800">Logout</a>
+                <form method="post" action="{% url 'logout' %}" class="inline">
+                    {% csrf_token %}
+                    <button type="submit" class="text-gray-400 text-md mb-6 hover:text-gray-800">Logout</button>
+                  </form>
             {% endif %}
         </div>
-    </div> <!-- container.// -->
+    </div> 
+    <!-- container.// -->
 
 </footer>
 <!-- footer //end -->

@@ -10,6 +10,12 @@ def superuser_required(view_func):
     decorated_view_func = login_required(user_passes_test(lambda u: u.is_superuser)(view_func))
     return decorated_view_func
 
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')
+
+
 @superuser_required
 def register_user(request):
     home = Home.objects.filter(is_active=True).first()
