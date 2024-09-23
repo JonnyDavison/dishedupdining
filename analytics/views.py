@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.utils import timezone
 from datetime import timedelta
-from django.db.models import Sum, Avg
+from django.db.models import Sum, Avg, Count
 from analytics.models import PageView, DailyAggregate
 from index.models import ContactSubmission, Home
 import json
@@ -83,13 +83,29 @@ def user_behavior(request):
     home = Home.objects.filter(is_active=True).first()
     thirty_days_ago = timezone.now().date() - timedelta(days=30)
     
+    # Fetch daily data and handle the case where no data is returned
     daily_data = DailyAggregate.objects.filter(date__gte=thirty_days_ago).order_by('-date')
     
-    top_pages = daily_data.values('top_pages').order_by('-total_views')[:10]
+    if daily_data.exists():
+        total_views = daily_data.aggregate(Sum('total_views'))['total_views__sum'] or 0
+        unique_visitors = daily_data.aggregate(Sum('unique_visitors'))['unique_visitors__sum'] or 0
+        avg_time_on_page = daily_data.aggregate(Avg('avg_time_on_page'))['avg_time_on_page__avg']
+        bounce_rate = daily_data.aggregate(Avg('bounce_rate'))['bounce_rate__avg'] or 0
+    else:
+        total_views = 0
+        unique_visitors = 0
+        avg_time_on_page = None
+        bounce_rate = 0
+    
+    # Get top pages from PageView model
+    top_pages = PageView.objects.filter(timestamp__date__gte=thirty_days_ago) \
+        .values('page_url') \
+        .annotate(count=Count('id')) \
+        .order_by('-count')[:10]
     
     # Prepare data for Chart.js
-    page_names = [page['top_pages'] for page in top_pages]
-    page_views = [page['total_views'] for page in top_pages]
+    page_names = [page['page_url'] for page in top_pages]
+    page_views = [page['count'] for page in top_pages]
     
     chart_data = {
         'page_names': page_names,
@@ -98,6 +114,10 @@ def user_behavior(request):
     
     context = {
         'home': home,
+        'total_views': total_views,
+        'unique_visitors': unique_visitors,
+        'avg_time_on_page': avg_time_on_page,
+        'bounce_rate': bounce_rate,
         'top_pages': top_pages,
         'chart_data': json.dumps(chart_data),
     }

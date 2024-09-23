@@ -25,9 +25,9 @@ class DailyAggregate(models.Model):
     new_visitors = models.IntegerField(default=0)
     contact_submissions = models.IntegerField(default=0)
     avg_time_on_page = models.DurationField(null=True, blank=True)
-    top_pages = models.JSONField(default=list, blank=True)
     bounce_rate = models.FloatField(default=0.0)
-    conversion_rate = models.FloatField(default=0.0)
+    conversions = models.IntegerField(default=0)
+    top_pages = models.JSONField(default=list, blank=True)
 
     class Meta:
         ordering = ['-date']
