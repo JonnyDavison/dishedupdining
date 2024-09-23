@@ -16,7 +16,11 @@
         <a href="{% url 'service_list' %}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Services</a>
         <a href="{% url 'about_list' %}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">About</a>
         <a href="{% url 'contact_list' %}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Contact Submissions</a>
-        
+        <a href="{% url 'analytics:dashboard' %}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Analytics Dashboard</a>
+        <a href="{% url 'analytics:traffic_overview' %}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Traffic Overview</a>
+        <a href="{% url 'analytics:user_behavior' %}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">User Behavior</a>
+        <a href="{% url 'analytics:conversions' %}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Conversions</a>
+        <br>    
         {% if user.is_superuser %}
         <a href="{% url 'user_list' %}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">User Management</a>
         <a href="{% url 'register_user' %}" class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-200">Register New User</a>

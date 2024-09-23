@@ -58,10 +58,12 @@ INSTALLED_APPS = [
     'django_summernote',
     'crispy_forms',
     'crispy_tailwind',
+    'chartjs',
     
     'index',
     'dashboard',
     'profiles',
+    'analytics',
 ]
 
 MIDDLEWARE = [
@@ -74,6 +76,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
+     'analytics.middleware.PageViewMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'
