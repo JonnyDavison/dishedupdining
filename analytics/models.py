@@ -1,5 +1,3 @@
-# analytics/models.py
-
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -24,7 +22,12 @@ class DailyAggregate(models.Model):
     date = models.DateField(unique=True)
     total_views = models.IntegerField(default=0)
     unique_visitors = models.IntegerField(default=0)
+    new_visitors = models.IntegerField(default=0)
     contact_submissions = models.IntegerField(default=0)
+    avg_time_on_page = models.DurationField(null=True, blank=True)
+    top_pages = models.JSONField(default=list, blank=True)
+    bounce_rate = models.FloatField(default=0.0)
+    conversion_rate = models.FloatField(default=0.0)
 
     class Meta:
         ordering = ['-date']
