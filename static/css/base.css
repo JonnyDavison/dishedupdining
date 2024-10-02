@@ -635,6 +635,11 @@ video {
   .container {
     max-width: 1024px;
   }
+
+  .menu-container {
+    max-width: 70vh !important;
+    padding-top: 99% !important;
+  }
 }
 
 @media (min-width: 1280px) {

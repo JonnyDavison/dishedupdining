@@ -146,12 +146,19 @@ def edit_gallery(request, gallery_id):
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def review_list(request):
+    home = Home.objects.filter(is_active=True).first()
     reviews = Review.objects.all().order_by('-created_at')
-    return render(request, 'dashboard/review_list.html', {'reviews': reviews})
+    
+    context = {
+        'home': home,
+        'reviews': reviews,
+        }
+    return render(request, 'dashboard/review_list.html', context)
 
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def add_review(request):
+    home = Home.objects.filter(is_active=True).first()
     if request.method == 'POST':
         form = ReviewForm(request.POST, request.FILES)
         if form.is_valid():
@@ -160,11 +167,17 @@ def add_review(request):
             return redirect('review_list')
     else:
         form = ReviewForm()
-    return render(request, 'dashboard/review_form.html', {'form': form})
+    context = {
+        'home': home,
+        'form': form,
+        }
+    
+    return render(request, 'dashboard/review_form.html', context)
 
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def edit_review(request, review_id):
+    home = Home.objects.filter(is_active=True).first()
     review = get_object_or_404(Review, id=review_id)
     if request.method == 'POST':
         form = ReviewForm(request.POST, request.FILES, instance=review)
@@ -174,7 +187,13 @@ def edit_review(request, review_id):
             return redirect('review_list')
     else:
         form = ReviewForm(instance=review)
-    return render(request, 'dashboard/review_form.html', {'form': form, 'review': review})
+        
+    context = {
+        'home': home,
+        'form': form,
+        'review': review
+        }
+    return render(request, 'dashboard/review_form.html', context)
 
 @login_required
 @user_passes_test(lambda u: u.is_superuser)

@@ -109,13 +109,18 @@ class ReviewForm(forms.ModelForm):
     class Meta:
         model = Review
         fields = ['name', 'rating', 'comment', 'image', 'is_approved']
+        widgets = {
+            'comment': SummernoteWidget(),
+        }
         
 
 class ServiceForm(forms.ModelForm):
     class Meta:
         model = Service
         fields = ['name', 'sub_title', 'description', 'image', 'is_active', 'price']
-        
+        widgets = {
+            'description': SummernoteWidget(),
+        }
         
 
 class AboutForm(forms.ModelForm):
@@ -123,5 +128,5 @@ class AboutForm(forms.ModelForm):
         model = About
         fields = ['title', 'sub_title', 'content', 'image', 'is_active']
         widgets = {
-            'content': forms.Textarea(attrs={'rows': 10}),
+            'content': SummernoteWidget(),
         }
