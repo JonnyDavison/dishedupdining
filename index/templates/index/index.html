@@ -150,9 +150,9 @@
                                         {% endif %}
                                         {% endfor %}
                                     </div>
-                                    <p class="text-gray-600 text-center mb-4">{{ review.comment }}</p>
+                                    <p class="text-gray-600 text-center mb-4">{{ review.comment|safe }}</p>
 
-                                    <h3 class="font-semibold text-gray-900 text-xl text-center">{{ review.name }}</h3>
+                                    <h3 class="font-semibold text-gray-900 text-xl text-center">{{ review.name|safe }}</h3>
                                 </div>
                             </div>
                             {% endfor %}
