@@ -37,15 +37,15 @@
                     {% for field in form %}
                     {% if field.name|startswith:'gallery_image' %}
                     <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="{{ field.id_for_label }}">
+                        <label class="block text-gray-700 text-xs font-medium font-bold mb-2" for="{{ field.id_for_label }}">
                             {{ field.label }}
                         </label>
                         {% if field.value %}
                         <img src="{{ field.value.url }}" alt="{{ field.label }}"
-                            class="mb-2 h-32 w-full object-cover rounded">
+                            class="mb-2 h-16 w-auto object-cover rounded">
                         {% endif %}
                         <input type="file" name="{{ field.name }}" id="{{ field.id_for_label }}"
-                            class="form-control-file">
+                            class="form-control-file rounded-lg text-xs font-small">
                         {% if field.value %}
                         <div class="mt-2">
                             <input type="checkbox" name="{{ field.name }}-clear" id="{{ field.name }}-clear_id">
