@@ -7,229 +7,191 @@
 <body class="font-body">
 
     <!-- home section -->
-    <section class="bg-white mb-20 md:mb-52 xl:mb-72 relative">
-        <div class="container max-w-screen-xl mx-auto px-4 relative">
-            <div class="flex items-center justify-center xl:justify-start">
-                <div class="mt-28 text-center xl:text-left relative z-10">
-                    <h1 class="font font-semibold text-3xl md:text-4xl lg:text-5xl text-gray-900 leading-normal mb-6">
+    <section class="bg-white mb-20 md:mb-52 xl:mb-72 lg:mt-72 relative min-h-screen">
+        <div class="container max-w-screen-xl mx-auto pb-4 pt-20 md:pt-28 lg:pt-36 relative z-10">
+            <div class="flex items-center md:pt-10 justify-start">
+                <div class="ps-1/5"></div> <!-- This creates the 1/5th space from the left -->
+                <div class="w-4/5 text-left relative">
+                    <h1 class="font-semibold text-3xl md:text-4xl lg:text-5xl text-gray-900 leading-normal mb-6">
                         {{ home.main_title|safe }}
                     </h1>
 
-                    <p class="font font-normal text-xl text-gray-600 leading-relaxed mb-6">
+                    <p class="font-normal text-xl text-gray-600 leading-relaxed mb-6">
                         {{ home.sub_title|safe }}
                     </p>
-                    <p class="font font-normal text-md text-gray-600 leading-relaxed mb-6">
+                    <p class="font-normal text-md text-gray-600 leading-relaxed mb-6">
                         {{ home.call_to_action|safe }}
                     </p>
 
                     <button
-                        class="px-6 mt-4 py-4 bg-custom-color1 text-white font-semibold text-lg rounded-xl hover:bg-custom-color1 transition ease-in-out duration-500">Contact
+                        class="px-5 mt-4 py-3 bg-custom-color1 text-white font-semibold text-lg rounded hover:bg-custom-color1 transition ease-in-out duration-500">Contact
                         us</button>
                 </div>
             </div>
         </div>
 
-        <div class="hidden xl:block xl:absolute z-0 top-0 right-0">
+        <div class="inset-0 pt-2 md:pt-5 lg:pt-12 z-0 absolute top-0 right-0">
             {% if hero_image_url %}
-            <img src="{{ hero_image_url }}" alt="Home page image">
+            <img src="{{ hero_image_url }}" alt="Home page image" class="w-full h-full object-cover">
             {% endif %}
         </div>
     </section>
-    <!-- home section //nd -->
+    <!-- home section //end -->
+</body>
+<!-- home section //nd -->
 
-    <!-- feature section -->
-    <section class="bg-white py-10 md:py-16 relative overflow-hidden">
-        <div class="container max-w-screen-xl mx-auto px-4 relative z-10">
-            <div class="flex flex-col lg:flex-row justify-end">
-                {% if feature and feature_image_url %}
-                <div class="lg:absolute left-0 top-0 w-full lg:w-1/2 h-64 lg:h-full mb-8 lg:mb-0">
+<!-- feature section -->
+<section class="bg-white py-10 md:py-16">
+    <div class="container max-w-screen-xl mx-auto px-4">
+        <div class="flex flex-col lg:flex-row items-start gap-8">
+            <div class="w-full lg:w-1/2">
+                <div class="aspect-w-4 aspect-h-3">
                     <img src="{{ feature_image_url }}" alt="Feature image"
-                        class="w-full h-full object-cover object-center">
+                        class="w-full h-full object-cover object-center rounded-lg">
                 </div>
-                {% endif %}
+            </div>
 
-                <div class="lg:w-1/2 lg:ml-auto text-center lg:pl-12">
-                    {% if feature %}
-                    <h1 class="font-semibold text-gray-900 text-3xl text-center leading-normal mb-6">
-                        {{ feature.feature_title|safe }}
-                    </h1>
+            <div class="w-full lg:w-1/2">
+                <h1 class="font-semibold text-gray-900 text-3xl leading-normal mb-6">
+                    {{ feature.feature_title|safe }}
+                </h1>
 
-                    <p class="font-normal text-gray-400 text-md md:text-xl text-center mb-30">
-                        {{ feature.feature_sub_title|safe }}
-                    </p>
-                    {% endif %}
+                <p class="font-normal text-gray-400 text-md md:text-xl mb-10">
+                    {{ feature.feature_sub_title|safe }}
+                </p>
+                <div class="space-y-8 pt-3">
+                    {% for item in feature_items %}
+                    <div class="flex items-start">
+                        <div
+                            class="w-14 h-14 bg-gray-200 rounded-lg flex items-center justify-center flex-shrink-0 mr-4">
+                            <i class="{{ item.icon }} text-color1 text-xl" aria-hidden="true"></i>
+                        </div>
+                        <div class="flex-1">
+                            <h4 class="font-semibold text-gray-900 text-lg mb-2">{{ item.title }}</h4>
+                            <p class="font-normal text-gray-400 text-base leading-relaxed">
+                                {{ item.description }}
+                            </p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- feature section //end -->
 
-                    <div class="grid grid-cols-12">
-                        <div class="col-span-full lg:col-span-10 lg:col-start-2">
-                            <div class="flex flex-col space-y-20 mt-10">
-                                {% for item in feature_items %}
-                                <div class="flex flex-row items-center justify-center lg:justify-start mb-5">
-                                    <div class="w-24 flex-shrink-0 flex justify-center">
-                                        <div class="w-20 h-20 bg-gray-200 rounded-lg flex items-center justify-center">
-                                            <i class="{{ item.icon }} text-color1 fa-2x"></i>
-                                        </div>
-                                    </div>
-                                    <div class="flex-grow max-w-md">
-                                        <!-- Added max-width for better text control -->
-                                        <h4 class="font-semibold text-gray-900 text-xl mb-2">{{ item.title }}</h4>
-                                        <p class="font-normal text-gray-400 text-l leading-relaxed">
-                                            {{ item.description }}</p>
-                                    </div>
-                                </div>
+<!-- gallery section -->
+<section class="bg-white py-10 md:py-16">
+    <div class="container max-w-screen-xl mx-auto px-4">
+        {% if gallery_name %}
+        <h1 class="font-semibold text-gray-900 text-4xl text-center mb-4">{{ gallery_name|safe }}</h1>
+        {% if gallery_description %}
+        <p class="text-center text-gray-600 mb-10">{{ gallery_description|safe }}</p>
+        {% endif %}
+
+        {% if gallery_images %}
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {% for image_url in gallery_images %}
+            <div class="aspect-w-1 aspect-h-1">
+                <img src="{{ image_url }}" alt="Gallery image {{ forloop.counter }}"
+                    class="w-full h-full object-cover rounded-lg hover:opacity-75 transition ease-in-out duration-500">
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="text-center text-gray-600">No images in this gallery yet.</p>
+        {% endif %}
+        {% else %}
+        <h1 class="font-semibold text-gray-900 text-4xl text-center mb-4">Our Gallery</h1>
+        <p class="text-center text-gray-600">No active gallery available at the moment.</p>
+        {% endif %}
+    </div>
+</section>
+<!-- gallery section //end -->
+
+<!-- testimonial section -->
+<section class="bg-white py-10 md:py-16">
+    <div class="container max-w-screen-xl mx-auto px-4">
+        <h2 class="font-semibold text-gray-900 text-2xl md:text-4xl text-center leading-normal mb-14">What People Say About Dished Up Dining</h2>
+
+        {% if reviews %}
+        <div class="py-12">
+            <div id="reviews-carousel" class="relative" data-carousel="static">
+                <!-- Carousel wrapper -->
+                <div class="overflow-hidden relative h-96 rounded-lg">
+                    {% for review in reviews %}
+                    <div class="hidden duration-700 ease-in-out absolute inset-0 transition-all transform" data-carousel-item="{{ forloop.counter0 }}">
+                        <div class="bg-gray-100 rounded-lg p-8 h-full flex flex-col justify-between">
+                            {% if review.image %}
+                            <img src="{{ review.image.url }}" alt="{{ review.name }}" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                            {% endif %}
+                            <div class="flex items-center justify-center gap-1 mb-4">
+                                {% for i in "12345" %}
+                                <i class="fas fa-star {% if forloop.counter <= review.rating %}text-yellow-500{% else %}text-gray-300{% endif %}"></i>
                                 {% endfor %}
                             </div>
+                            <p class="text-gray-600 text-center mb-4">{{ review.comment|safe }}</p>
+                            <h3 class="font-semibold text-gray-900 text-xl text-center">{{ review.name|safe }}</h3>
                         </div>
                     </div>
+                    {% endfor %}
                 </div>
+
+                <!-- Slider controls -->
+                <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-custom-color1 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                        <svg class="w-4 h-4 text-color2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4" />
+                        </svg>
+                        <span class="sr-only">Previous</span>
+                    </span>
+                </button>
+                <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
+                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-custom-color1 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                        <svg class="w-4 h-4 text-color2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                        </svg>
+                        <span class="sr-only">Next</span>
+                    </span>
+                </button>
             </div>
         </div>
-    </section>
-    <!-- feature section //end -->
-
-    <!-- gallery section -->
-    <section class="bg-white py-10 md:py-16">
-        <div class="container max-w-screen-xl mx-auto px-4">
-            {% if gallery_name %}
-            <h1 class="font-semibold text-gray-900 text-4xl text-center mb-4">{{ gallery_name|safe }}</h1>
-            {% if gallery_description %}
-            <p class="text-center text-gray-600 mb-10">{{ gallery_description|safe }}</p>
-            {% endif %}
-
-            {% if gallery_images %}
-            <div class="flex flex-wrap -mx-2">
-                {% for image_url in gallery_images %}
-                <div class="w-1/2 md:w-1/3 lg:w-1/4 px-2 mb-4">
-                    <img src="{{ image_url }}" alt="Gallery image {{ forloop.counter }}"
-                        class="w-full h-48 object-cover hover:opacity-75 transition ease-in-out duration-500">
-                </div>
-                {% endfor %}
-            </div>
-            {% else %}
-            <p class="text-center text-gray-600">No images in this gallery yet.</p>
-            {% endif %}
-            {% else %}
-            <h1 class="font-semibold text-gray-900 text-4xl text-center mb-4">Our Gallery</h1>
-            <p class="text-center text-gray-600">No active gallery available at the moment.</p>
-            {% endif %}
+        {% else %}
+        <div class="py-12">
+            <p class="text-center text-gray-500">No reviews available at the moment.</p>
         </div>
-    </section>
-    <!-- gallery section //end -->
-
-    <!-- testimonial section -->
-    <section class="bg-white py-10 md:py-16">
-
-        <div class="container max-w-screen-xl mx-auto px-4 xl:relative">
-
-            <p class="font-normal text-gray-400 text-lg md:text-xl text-center uppercase mb-6">Testimonial</p>
-
-            <h1 class="font-semibold text-gray-900 text-2xl md:text-4xl text-center leading-normal mb-14">What People
-                Say <br> About Dished Up Dining</h1>
-
-            {% if reviews %}
-            <div class="py-12 bg-white">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <h2 class="text-3xl font-extrabold text-gray-900 text-center mb-8">What Our Customers Say</h2>
-
-                    <div id="reviews-carousel" class="relative" data-carousel="static">
-                        <!-- Carousel wrapper -->
-                        <div class="overflow-hidden relative h-96 rounded-lg sm:h-80 xl:h-80 2xl:h-96">
-                            {% for review in reviews %}
-                            <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                                <div class="bg-gray-100 rounded-lg p-8 h-full flex flex-col justify-between">
-                                    {% if review.image %}
-                                    <img src="{{ review.image.url }}" alt="{{ review.name }}"
-                                        class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
-                                    {% endif %}
-
-                                    <div class="flex items-center justify-center gap-1 mb-4">
-                                        {% for i in "12345" %}
-                                        {% if forloop.counter <= review.rating %}
-                                        <i class="fas fa-star text-yellow-500"></i>
-                                        {% else %}
-                                        <i class="far fa-star text-yellow-500"></i>
-                                        {% endif %}
-                                        {% endfor %}
-                                    </div>
-                                    <p class="text-gray-600 text-center mb-4">{{ review.comment|safe }}</p>
-
-                                    <h3 class="font-semibold text-gray-900 text-xl text-center">{{ review.name|safe }}</h3>
-                                </div>
-                            </div>
-                            {% endfor %}
-                        </div>
-
-                        <!-- Slider controls -->
-                        <button type="button"
-                            class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                            data-carousel-prev>
-                            <span
-                                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="M5 1 1 5l4 4" />
-                                </svg>
-                                <span class="sr-only">Previous</span>
-                            </span>
-                        </button>
-                        <button type="button"
-                            class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                            data-carousel-next>
-                            <span
-                                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                <svg class="w-4 h-4 text-white dark:text-gray-800" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m1 9 4-4-4-4" />
-                                </svg>
-                                <span class="sr-only">Next</span>
-                            </span>
-                        </button>
-                    </div>
-                </div>
-            </div>
-            {% else %}
-            <div class="py-12 bg-white">
-                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <p class="text-center text-gray-500">No reviews available at the moment.</p>
-                </div>
-            </div>
-            {% endif %}
-
-        </div>
-        <!-- container.// -->
-
-    </section>
-    <!-- testimonial section //end -->
+        {% endif %}
+    </div>
+</section>
+<!-- testimonial section //end -->
 
 <!-- Contact section -->
 <section class="bg-white py-10 md:py-16">
-    <div class="container max-w-screen-xl mx-auto px-4 xl:relative">
-        <div class="bg-custom-color1 flex flex-col lg:flex-row items-center justify-evenly py-14 rounded-3xl overflow-visible">
-            <div class="text-center lg:text-left mb-10 lg:mb-0">
-                <h1 class="font-semibold text-white text-4xl md:text-5xl lg:text-7xl leading-normal mb-4">Talk to us<br>to discuss</h1>
-                <p class="font-normal text-white text-md md:text-xl">
-                    We are ready to help with your next event. 
+    <div class="container max-w-screen-xl mx-auto px-4">
+        <div class="bg-custom-color1 flex flex-col lg:flex-row items-center justify-between py-12 px-8 lg:p-14 rounded-lg overflow-hidden relative">            
+            <div class="text-center lg:text-left lg:w-1/2 mb-10 lg:mb-0 z-10">
+                <h1 class="font-semibold text-white text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">Talk to us<br>to discuss</h1>
+                <p class="font-normal text-white text-md md:text-xl max-w-md mx-auto lg:mx-0">
+                    We are ready to help with your next event.
                     <br>
-                    Fill in the form or email us directly on 
+                    Fill in the form or email us directly on
                     <br>
-                    <a href="mailto:info@dishedupdining.com">info@dishedupdining.com</a>
-                    
-                    </p>
+                    <a href="mailto:info@dishedupdining.com" class="underline">info@dishedupdining.com</a>
+                </p>
+            </div>
 
+            <div class="hidden lg:block absolute right-0 top-0 h-full w-1/2 z-0">
+                <img src="/media/book.png" alt="Image" class="object-cover h-full w-full">
             </div>
-        
-            <div class="hidden xl:block xl:absolute right-0 z-0">
-                <img src="/media/book.png" alt="Image">
-            </div>
-        
-            <section id="contact" class="bg-custom-color2 bg-opacity-90 py-8 px-6 rounded-lg shadow-lg relative z-10">
+
+            <section id="contact" class="bg-custom-color2 bg-opacity-90 py-8 px-6 rounded-lg shadow-lg lg:w-5/12 z-10">
                 <h2 class="text-3xl font-semibold text-center mb-6 text-color1">Contact Us</h2>
-        
+
                 {% if form_submitted %}
-                    <p class="text-color1 text-center mb-4">Thank you for your message. We'll get back to you soon!</p>
+                <p class="text-color1 text-center mb-4">Thank you for your message. We'll get back to you soon!</p>
                 {% endif %}
-        
+
                 <div class="max-w-lg mx-auto pointer-events-auto">
                     <form class="space-y-4" method="post">
                         {% csrf_token %}
@@ -262,7 +224,7 @@
                 </div>
             </section>
         </div>
-    </div> <!-- container.// -->
+    </div>
 </section>
 <!-- book section //end -->
 

@@ -1,0 +1,26 @@
+{
+  "name": "dishedupdining",
+  "version": "1.0.0",
+  "description": "![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)",
+  "main": "postcss.config.js",
+  "scripts": {
+    "build-css": "tailwindcss -i ./static/css/tailwind.css -o ./static/css/styles.css --minify"
+  },
+  "dependencies": {
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "tailwindcss": "^3.4.13"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonnyDavison/dishedupdining.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JonnyDavison/dishedupdining/issues"
+  },
+  "homepage": "https://github.com/JonnyDavison/dishedupdining#readme"
+}

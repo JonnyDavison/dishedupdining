@@ -1,153 +1,153 @@
-from django.shortcuts import render
-from django.utils import timezone
-from datetime import timedelta
-from django.db.models import Sum, Avg, Count
-from analytics.models import PageView, DailyAggregate
-from index.models import ContactSubmission, Home
-import json
+# from django.shortcuts import render
+# from django.utils import timezone
+# from datetime import timedelta
+# from django.db.models import Sum, Avg, Count
+# from analytics.models import PageView, DailyAggregate
+# from index.models import ContactSubmission, Home
+# import json
 
 
-def analytics_dashboard(request):
-    home = Home.objects.filter(is_active=True).first()
-    thirty_days_ago = timezone.now().date() - timedelta(days=30)
+# def analytics_dashboard(request):
+#     home = Home.objects.filter(is_active=True).first()
+#     thirty_days_ago = timezone.now().date() - timedelta(days=30)
     
-    # Use DailyAggregate for the last 30 days
-    daily_data = DailyAggregate.objects.filter(date__gte=thirty_days_ago).order_by('date')
+#     # Use DailyAggregate for the last 30 days
+#     daily_data = DailyAggregate.objects.filter(date__gte=thirty_days_ago).order_by('date')
     
-    total_views = daily_data.aggregate(Sum('total_views'))['total_views__sum'] or 0
-    unique_visitors = daily_data.aggregate(Sum('unique_visitors'))['unique_visitors__sum'] or 0
-    new_visitors = daily_data.aggregate(Sum('new_visitors'))['new_visitors__sum'] or 0
-    contact_submissions = ContactSubmission.objects.filter(created_at__gte=thirty_days_ago).count()
-    avg_time_on_page = daily_data.aggregate(Avg('avg_time_on_page'))['avg_time_on_page__avg']
+#     total_views = daily_data.aggregate(Sum('total_views'))['total_views__sum'] or 0
+#     unique_visitors = daily_data.aggregate(Sum('unique_visitors'))['unique_visitors__sum'] or 0
+#     new_visitors = daily_data.aggregate(Sum('new_visitors'))['new_visitors__sum'] or 0
+#     contact_submissions = ContactSubmission.objects.filter(created_at__gte=thirty_days_ago).count()
+#     avg_time_on_page = daily_data.aggregate(Avg('avg_time_on_page'))['avg_time_on_page__avg']
     
-    top_pages = PageView.objects.filter(timestamp__gte=thirty_days_ago) \
-        .values('page_url') \
-        .annotate(count=Count('id')) \
-        .order_by('-count')[:5]
+#     top_pages = PageView.objects.filter(timestamp__gte=thirty_days_ago) \
+#         .values('page_url') \
+#         .annotate(count=Count('id')) \
+#         .order_by('-count')[:5]
     
-    # Prepare data for Chart.js
-    dates = [data.date.strftime('%Y-%m-%d') for data in daily_data]
-    views = [data.total_views for data in daily_data]
-    visitors = [data.unique_visitors for data in daily_data]
+#     # Prepare data for Chart.js
+#     dates = [data.date.strftime('%Y-%m-%d') for data in daily_data]
+#     views = [data.total_views for data in daily_data]
+#     visitors = [data.unique_visitors for data in daily_data]
     
-    chart_data = {
-        'dates': dates,
-        'views': views,
-        'visitors': visitors
-    }
+#     chart_data = {
+#         'dates': dates,
+#         'views': views,
+#         'visitors': visitors
+#     }
     
-    context = {
-        'home': home,
-        'total_views': total_views,
-        'unique_visitors': unique_visitors,
-        'new_visitors': new_visitors,
-        'contact_submissions': contact_submissions,
-        'avg_time_on_page': avg_time_on_page,
-        'top_pages': top_pages,
-        'chart_data': json.dumps(chart_data),
-    }
-    return render(request, 'analytics/analytics_dashboard.html', context)
+#     context = {
+#         'home': home,
+#         'total_views': total_views,
+#         'unique_visitors': unique_visitors,
+#         'new_visitors': new_visitors,
+#         'contact_submissions': contact_submissions,
+#         'avg_time_on_page': avg_time_on_page,
+#         'top_pages': top_pages,
+#         'chart_data': json.dumps(chart_data),
+#     }
+#     return render(request, 'analytics/analytics_dashboard.html', context)
 
 
-def traffic_overview(request):
-    home = Home.objects.filter(is_active=True).first()
-    thirty_days_ago = timezone.now().date() - timedelta(days=30)
+# def traffic_overview(request):
+#     home = Home.objects.filter(is_active=True).first()
+#     thirty_days_ago = timezone.now().date() - timedelta(days=30)
     
-    daily_data = DailyAggregate.objects.filter(date__gte=thirty_days_ago).order_by('date')
+#     daily_data = DailyAggregate.objects.filter(date__gte=thirty_days_ago).order_by('date')
     
-    total_views = daily_data.aggregate(Sum('total_views'))['total_views__sum'] or 0
-    unique_visitors = daily_data.aggregate(Sum('unique_visitors'))['unique_visitors__sum'] or 0
-    avg_time_on_page = daily_data.aggregate(Avg('avg_time_on_page'))['avg_time_on_page__avg'] or 0
+#     total_views = daily_data.aggregate(Sum('total_views'))['total_views__sum'] or 0
+#     unique_visitors = daily_data.aggregate(Sum('unique_visitors'))['unique_visitors__sum'] or 0
+#     avg_time_on_page = daily_data.aggregate(Avg('avg_time_on_page'))['avg_time_on_page__avg'] or 0
     
-    # Prepare data for Chart.js
-    dates = [data.date.strftime('%Y-%m-%d') for data in daily_data]
-    views = [data.total_views for data in daily_data]
-    visitors = [data.unique_visitors for data in daily_data]
+#     # Prepare data for Chart.js
+#     dates = [data.date.strftime('%Y-%m-%d') for data in daily_data]
+#     views = [data.total_views for data in daily_data]
+#     visitors = [data.unique_visitors for data in daily_data]
     
-    chart_data = {
-        'dates': dates,
-        'views': views,
-        'visitors': visitors
-    }
+#     chart_data = {
+#         'dates': dates,
+#         'views': views,
+#         'visitors': visitors
+#     }
     
-    context = {
-        'home': home,
-        'total_views': total_views,
-        'unique_visitors': unique_visitors,
-        'avg_time_on_page': avg_time_on_page,
-        'chart_data': json.dumps(chart_data),
-    }
-    return render(request, 'analytics/traffic_overview.html', context)
+#     context = {
+#         'home': home,
+#         'total_views': total_views,
+#         'unique_visitors': unique_visitors,
+#         'avg_time_on_page': avg_time_on_page,
+#         'chart_data': json.dumps(chart_data),
+#     }
+#     return render(request, 'analytics/traffic_overview.html', context)
 
-def user_behavior(request):
-    home = Home.objects.filter(is_active=True).first()
-    thirty_days_ago = timezone.now().date() - timedelta(days=30)
+# def user_behavior(request):
+#     home = Home.objects.filter(is_active=True).first()
+#     thirty_days_ago = timezone.now().date() - timedelta(days=30)
     
-    # Fetch daily data and handle the case where no data is returned
-    daily_data = DailyAggregate.objects.filter(date__gte=thirty_days_ago).order_by('-date')
+#     # Fetch daily data and handle the case where no data is returned
+#     daily_data = DailyAggregate.objects.filter(date__gte=thirty_days_ago).order_by('-date')
     
-    if daily_data.exists():
-        total_views = daily_data.aggregate(Sum('total_views'))['total_views__sum'] or 0
-        unique_visitors = daily_data.aggregate(Sum('unique_visitors'))['unique_visitors__sum'] or 0
-        avg_time_on_page = daily_data.aggregate(Avg('avg_time_on_page'))['avg_time_on_page__avg']
-        bounce_rate = daily_data.aggregate(Avg('bounce_rate'))['bounce_rate__avg'] or 0
-    else:
-        total_views = 0
-        unique_visitors = 0
-        avg_time_on_page = None
-        bounce_rate = 0
+#     if daily_data.exists():
+#         total_views = daily_data.aggregate(Sum('total_views'))['total_views__sum'] or 0
+#         unique_visitors = daily_data.aggregate(Sum('unique_visitors'))['unique_visitors__sum'] or 0
+#         avg_time_on_page = daily_data.aggregate(Avg('avg_time_on_page'))['avg_time_on_page__avg']
+#         bounce_rate = daily_data.aggregate(Avg('bounce_rate'))['bounce_rate__avg'] or 0
+#     else:
+#         total_views = 0
+#         unique_visitors = 0
+#         avg_time_on_page = None
+#         bounce_rate = 0
     
-    # Get top pages from PageView model
-    top_pages = PageView.objects.filter(timestamp__date__gte=thirty_days_ago) \
-        .values('page_url') \
-        .annotate(count=Count('id')) \
-        .order_by('-count')[:10]
+#     # Get top pages from PageView model
+#     top_pages = PageView.objects.filter(timestamp__date__gte=thirty_days_ago) \
+#         .values('page_url') \
+#         .annotate(count=Count('id')) \
+#         .order_by('-count')[:10]
     
-    # Prepare data for Chart.js
-    page_names = [page['page_url'] for page in top_pages]
-    page_views = [page['count'] for page in top_pages]
+#     # Prepare data for Chart.js
+#     page_names = [page['page_url'] for page in top_pages]
+#     page_views = [page['count'] for page in top_pages]
     
-    chart_data = {
-        'page_names': page_names,
-        'page_views': page_views
-    }
+#     chart_data = {
+#         'page_names': page_names,
+#         'page_views': page_views
+#     }
     
-    context = {
-        'home': home,
-        'total_views': total_views,
-        'unique_visitors': unique_visitors,
-        'avg_time_on_page': avg_time_on_page,
-        'bounce_rate': bounce_rate,
-        'top_pages': top_pages,
-        'chart_data': json.dumps(chart_data),
-    }
-    return render(request, 'analytics/user_behavior.html', context)
+#     context = {
+#         'home': home,
+#         'total_views': total_views,
+#         'unique_visitors': unique_visitors,
+#         'avg_time_on_page': avg_time_on_page,
+#         'bounce_rate': bounce_rate,
+#         'top_pages': top_pages,
+#         'chart_data': json.dumps(chart_data),
+#     }
+#     return render(request, 'analytics/user_behavior.html', context)
 
-def conversions(request):
-    home = Home.objects.filter(is_active=True).first()
-    thirty_days_ago = timezone.now().date() - timedelta(days=30)
+# def conversions(request):
+#     home = Home.objects.filter(is_active=True).first()
+#     thirty_days_ago = timezone.now().date() - timedelta(days=30)
     
-    daily_data = DailyAggregate.objects.filter(date__gte=thirty_days_ago).order_by('date')
+#     daily_data = DailyAggregate.objects.filter(date__gte=thirty_days_ago).order_by('date')
     
-    total_views = daily_data.aggregate(Sum('total_views'))['total_views__sum'] or 0
-    total_conversions = daily_data.aggregate(Sum('conversions'))['conversions__sum'] or 0
+#     total_views = daily_data.aggregate(Sum('total_views'))['total_views__sum'] or 0
+#     total_conversions = daily_data.aggregate(Sum('conversions'))['conversions__sum'] or 0
     
-    conversion_rate = (total_conversions / total_views) * 100 if total_views > 0 else 0
+#     conversion_rate = (total_conversions / total_views) * 100 if total_views > 0 else 0
     
-    # Prepare data for Chart.js
-    dates = [data.date.strftime('%Y-%m-%d') for data in daily_data]
-    conversions = [data.conversions for data in daily_data]
+#     # Prepare data for Chart.js
+#     dates = [data.date.strftime('%Y-%m-%d') for data in daily_data]
+#     conversions = [data.conversions for data in daily_data]
     
-    chart_data = {
-        'dates': dates,
-        'conversions': conversions
-    }
+#     chart_data = {
+#         'dates': dates,
+#         'conversions': conversions
+#     }
     
-    context = {
-        'home': home,
-        'total_views': total_views,
-        'total_conversions': total_conversions,
-        'conversion_rate': conversion_rate,
-        'chart_data': json.dumps(chart_data),
-    }
-    return render(request, 'analytics/conversions.html', context)
+#     context = {
+#         'home': home,
+#         'total_views': total_views,
+#         'total_conversions': total_conversions,
+#         'conversion_rate': conversion_rate,
+#         'chart_data': json.dumps(chart_data),
+#     }
+#     return render(request, 'analytics/conversions.html', context)

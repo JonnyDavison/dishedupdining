@@ -1,0 +1,91 @@
+/* Color Pallet */
+
+.bg-custom-color1 {
+    background-color: #6c705f !important;
+  }
+  
+  .bg-custom-color2 {
+    background-color: #eee3d4 !important;
+  }
+  
+  .bg-custom-color3 {
+    background-color: #b8b7a5 !important;
+  }
+  
+  .bg-custom-color4 {
+    background-color: #000000 !important;
+  }
+  
+  .text-color1 {
+    color: #6c705f !important;
+  }
+  
+  .text-color2 {
+    color: #eee3d4 !important;
+  }
+  
+  .text-color3 {
+    color: #b8b7a5 !important;
+  }
+  
+  .text-color4 {
+    color: #000000 !important;
+  }
+  
+  .border-color1 {
+    border-color: #6c705f;
+  }
+  
+  *,
+  ::before,
+  ::after {
+    box-sizing: border-box;
+  }
+  
+  html,
+  body {
+    font-family: 'Kiona', sans-serif !important;
+  }
+  
+  .container {
+    width: 100%;
+  }
+  
+  @media (min-width: 640px) {
+    .container {
+      max-width: 640px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .container {
+      max-width: 768px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .container {
+      max-width: 1024px;
+    }
+  
+    .menu-container {
+      max-width: 70vh !important;
+      padding-top: 99% !important;
+    }
+  }
+  
+  @media (min-width: 1280px) {
+    .container {
+      max-width: 1280px;
+    }
+  }
+  
+  @media (min-width: 1536px) {
+    .container {
+      max-width: 1536px;
+    }
+  }
+  
+  .bg-none {
+    background-image: none;
+  }

@@ -16,14 +16,16 @@
     {% block extra_js %}
     {% endblock %}
     <!-- core css -->
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link href="https://fonts.cdnfonts.com/css/kiona-2" rel="stylesheet">
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+
 
     {% block extra_css %}
     {% endblock %}
     <!-- favicon -->
     <link rel="icon" type="image/x-icon" href="{{ MEDIA_URL }}favicon.ico">
-    
     <!-- DASHBOARD ICONS -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <script src="https://unpkg.com/akar-icons-fonts"></script>
@@ -37,8 +39,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
     <script src="https://kit.fontawesome.com/75b57bf907.js" crossorigin="anonymous"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -74,6 +75,11 @@
             <ul class="lg:flex flex-col lg:flex-row lg:items-center lg:mx-auto lg:space-x-8 xl:space-x-16"
                 :class="{'hidden':!navbarOpen,'flex':navbarOpen}">
 
+
+                <li
+                    class="font-semibold text-gray-900 text-lg hover:text-gray-400 transition ease-in-out duration-300 mb-5 lg:mb-0">
+                    <a href="{% url 'index' %}">Home</a>
+                </li>
                 <li
                     class="font-semibold text-gray-900 text-lg hover:text-gray-400 transition ease-in-out duration-300 mb-5 lg:mb-0">
                     <a href="{% url 'about' %}">About Us</a>
@@ -201,7 +207,7 @@
                 
             </div>
         </div>
-        <div class="text-left lg:ps-8">
+        <div class="text-center lg:text-left lg:ps-8">
             {% if not user.is_authenticated %}
                 <a href="{% url 'login' %}" class="text-gray-400 text-md mb-6 hover:text-gray-800">Login</a>
             {% else %}
