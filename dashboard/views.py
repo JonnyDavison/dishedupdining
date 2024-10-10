@@ -17,6 +17,8 @@ def is_superuser(user):
 def dashboard_home(request):
     home = Home.objects.filter(is_active=True).first()
     thirty_days_ago = timezone.now() - timedelta(days=30)
+    unread_contacts = ContactSubmission.objects.filter(is_read=False).order_by('-created_at')
+    read_contacts = ContactSubmission.objects.filter(is_read=True).order_by('-created_at')
     
     total_views = PageView.objects.filter(timestamp__gte=thirty_days_ago).count()
     unique_visitors = PageView.objects.filter(timestamp__gte=thirty_days_ago).values('user_ip').distinct().count()
@@ -35,6 +37,8 @@ def dashboard_home(request):
     
     context = {
         'home': home,
+        'unread_contacts': unread_contacts,
+        'read_contacts': read_contacts,
         'total_services': Service.objects.count(),
         'active_galleries': Gallery.objects.filter(is_active=True).count(),
         'total_reviews': Review.objects.count(),
