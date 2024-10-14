@@ -36,8 +36,8 @@ if os.path.exists(ENV_PATH):
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
-
-ALLOWED_HOSTS = ['dishedupdining-339b98932b82.herokuapp.com','8000-jonnydaviso-dishedupdin-y6509ao3gk5.ws-eu116.gitpod.io', 'dishedupdining.com/']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+# ALLOWED_HOSTS = ['dishedupdining-339b98932b82.herokuapp.com','8000-jonnydaviso-dishedupdin-y6509ao3gk5.ws-eu116.gitpod.io', 'dishedupdining.com/']
 CSRF_TRUSTED_ORIGINS = ['https://8000-jonnydaviso-dishedupdin-y6509ao3gk5.ws-eu116.gitpod.io', 'https://dishedupdining-339b98932b82.herokuapp.com/', 'https://dishedupdining.com/']
 TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # Application definition
