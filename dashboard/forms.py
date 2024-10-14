@@ -11,7 +11,7 @@ class HomeForm(forms.ModelForm):
         widgets = {
             'main_title': SummernoteWidget(attrs={
                 'summernote': {
-                    'height': '100px',
+                    'height': '300px',
                     'toolbar': [
                         ['style', ['bold', 'italic', 'underline', 'clear']],
                         ['font', ['strikethrough', 'superscript', 'subscript']],
@@ -21,7 +21,7 @@ class HomeForm(forms.ModelForm):
             }),
             'sub_title': SummernoteWidget(attrs={
                 'summernote': {
-                    'height': '100px',
+                    'height': '300px',
                     'toolbar': [
                         ['style', ['bold', 'italic', 'underline', 'clear']],
                         ['font', ['strikethrough', 'superscript', 'subscript']],
@@ -31,7 +31,7 @@ class HomeForm(forms.ModelForm):
             }),
             'call_to_action': SummernoteWidget(attrs={
                 'summernote': {
-                    'height': '100px',
+                    'height': '300px',
                     'toolbar': [
                         ['style', ['bold', 'italic', 'underline', 'clear']],
                         ['font', ['strikethrough', 'superscript', 'subscript']],
@@ -48,7 +48,7 @@ class FeatureForm(forms.ModelForm):
         widgets = {
             'feature_title': SummernoteWidget(attrs={
                 'summernote': {
-                    'height': '100px',
+                    'height': '300px',
                     'toolbar': [
                         ['style', ['bold', 'italic', 'underline', 'clear']],
                         ['font', ['strikethrough', 'superscript', 'subscript']],
@@ -58,7 +58,7 @@ class FeatureForm(forms.ModelForm):
             }),
             'feature_sub_title': SummernoteWidget(attrs={
                 'summernote': {
-                    'height': '100px',
+                    'height': '300px',
                     'toolbar': [
                         ['style', ['bold', 'italic', 'underline', 'clear']],
                         ['font', ['strikethrough', 'superscript', 'subscript']],
@@ -74,7 +74,7 @@ class FeatureItemForm(forms.ModelForm):
         widgets = {
             'description': SummernoteWidget(attrs={
                 'summernote': {
-                    'height': '100px',
+                    'height': '300px',
                     'toolbar': [
                         ['style', ['bold', 'italic', 'underline', 'clear']],
                         ['font', ['strikethrough', 'superscript', 'subscript']],
@@ -96,7 +96,7 @@ class GalleryForm(forms.ModelForm):
         widgets = {
             'description': SummernoteWidget(attrs={
                 'summernote': {
-                    'height': '100px',
+                    'height': '300px',
                     'toolbar': [
                         ['style', ['bold', 'italic', 'underline', 'clear']],
                         ['font', ['strikethrough', 'superscript', 'subscript']],
@@ -120,7 +120,7 @@ class ReviewForm(forms.ModelForm):
         widgets = {
             'comment': SummernoteWidget(attrs={
                 'summernote': {
-                    'height': '100px',
+                    'height': '300px',
                     'toolbar': [
                         ['style', ['bold', 'italic', 'underline', 'clear']],
                         ['font', ['strikethrough', 'superscript', 'subscript']],
