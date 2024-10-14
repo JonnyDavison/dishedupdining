@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, user_passes_test
 from index.models import Home, Service, Gallery, Review, ContactSubmission, About, Feature, FeatureItem
-from .forms import HomeForm, FeatureForm, GalleryForm, ReviewForm, ServiceForm, AboutForm
+from .forms import HomeForm, FeatureForm, GalleryForm, ReviewForm, ServiceForm, AboutForm, FeatureItemFormSet
 from django.utils import timezone
 from datetime import timedelta
 from analytics.models import PageView
@@ -86,15 +86,20 @@ def edit_feature(request):
     
     if request.method == 'POST':
         form = FeatureForm(request.POST, request.FILES, instance=feature)
-        if form.is_valid():
-            form.save()
+        formset = FeatureItemFormSet(request.POST, instance=feature)
+        if form.is_valid() and formset.is_valid():
+            feature = form.save()
+            formset.save()
+            messages.success(request, 'Feature and Feature Items updated successfully.')
             return redirect('dashboard_home')
     else:
         form = FeatureForm(instance=feature)
+        formset = FeatureItemFormSet(instance=feature)
     
     context = {
         'home': home,
         'form': form,
+        'formset': formset,
         'feature': feature,
     }
     return render(request, 'dashboard/edit_feature.html', context)

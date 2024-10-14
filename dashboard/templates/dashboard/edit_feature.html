@@ -1,7 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load crispy_forms_tags %}
-{% load dashboard_extras %}
 
 {% block extra_css %}
     <link rel="stylesheet" href="{% static 'dashboard/css/dashboard.css' %}">
@@ -9,6 +8,8 @@
 
 {% block extra_js %}
     {{ form.media }}
+    {{ formset.media }}
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 {% endblock %}
 
 {% block content %}
@@ -21,37 +22,39 @@
             <h3 class="text-gray-700 text-3xl font-medium mb-6">Edit Feature</h3>
             <form method="post" enctype="multipart/form-data" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 {% csrf_token %}
-                <div class="mb-4 ">
-                    <label for="{{ form.feature_image.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
-                        Feature Image
-                    </label>
-                    {% if feature.feature_image %}
-                        <img src="{{ feature.feature_image.url }}" alt="Current Feature Image" class="mb-2 h-16 w-auto">
-                    {% endif %}
-                    {{ form.feature_image }}
-                </div>
-                <div class="mb-4">
-                    <label for="{{ form.feature_title.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
-                        Feature Title
-                    </label>
-                    {{ form.feature_title }}
-                </div>
-                <div class="mb-4">
-                    <label for="{{ form.feature_sub_title.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
-                        Feature Sub Title
-                    </label>
-                    {{ form.feature_sub_title }}
-                </div>
-                <div class="mb-4">
-                    {{ form.is_active|as_crispy_field }}
-                </div>
-                <div class="flex items-center justify-between">
+                {{ form|crispy }}
+                
+                <h4 class="text-gray-700 text-xl font-medium mt-6 mb-4">Feature Items</h4>
+                {{ formset.management_form }}
+                {% for form in formset %}
+                    <div class="mb-4 feature-item">
+                        {{ form|crispy }}
+                    </div>
+                {% endfor %}
+                
+                <div class="flex items-center justify-between mt-6">
                     <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
                         Save Changes
+                    </button>
+                    <button type="button" id="add-feature-item" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                        Add Feature Item
                     </button>
                 </div>
             </form>
         </div>
     </main>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $('#add-feature-item').click(function() {
+            var form_idx = $('#id_items-TOTAL_FORMS').val();
+            $('#id_items-TOTAL_FORMS').val(parseInt(form_idx) + 1);
+            var empty_form = $('.feature-item:first').clone(true);
+            empty_form.find('input, textarea').val('');
+            empty_form.find('input[type=checkbox]').prop('checked', false);
+            empty_form.insertBefore($(this).parent());
+        });
+    });
+</script>
 {% endblock %}
