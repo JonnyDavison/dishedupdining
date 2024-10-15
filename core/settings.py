@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'index',
     'dashboard',
     'profiles',
-    'analytics',
+ 
 ]
 
 MIDDLEWARE = [
@@ -67,7 +67,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
-     'analytics.middleware.PageViewMiddleware',
 ]
 
 ROOT_URLCONF = 'core.urls'

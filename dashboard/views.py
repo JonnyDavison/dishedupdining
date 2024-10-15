@@ -5,7 +5,6 @@ from index.models import Home, Service, Gallery, Review, ContactSubmission, Abou
 from .forms import HomeForm, FeatureForm, GalleryForm, ReviewForm, ServiceForm, AboutForm, FeatureItemFormSet
 from django.utils import timezone
 from datetime import timedelta
-from analytics.models import PageView
 from django.db.models import Count, Avg
 
 
