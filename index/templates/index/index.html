@@ -8,24 +8,27 @@
 
     <!-- home section -->
     <section class="bg-white mb-20 md:mb-52 xl:mb-72 lg:mt-72 relative min-h-screen">
-        <div class="container max-w-screen-xl mx-auto pb-4 pt-20 md:pt-28 lg:pt-36 relative z-10">
-            <div class="flex items-center md:pt-10 justify-start">
-                <div class="ps-1/5"></div> <!-- This creates the 1/5th space from the left -->
-                <div class="w-4/5 text-left relative">
-                    <h1 class="font-semibold text-3xl md:text-4xl lg:text-5xl text-gray-900 leading-normal mb-6">
+        <div class="container max-w-screen-xl mx-auto pb-4 pt-20 md:pt-28 lg:pt-36 relative z-10 px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center md:pt-10 justify-start">
+                <div class="hidden md:block md:w-1/5"></div>
+                <!-- This creates the 1/5th space from the left on medium screens and up -->
+                <div class="w-full md:w-4/5 text-left relative">
+                    <h1
+                        class="font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-gray-900 leading-tight mb-6">
                         {{ home.main_title|safe }}
                     </h1>
 
-                    <p class="font-normal text-xl text-gray-600 leading-relaxed mb-6">
+                    <p class="font-normal text-lg sm:text-xl text-gray-600 leading-relaxed mb-6">
                         {{ home.sub_title|safe }}
                     </p>
                     <p class="font-normal text-md text-gray-600 leading-relaxed mb-6">
                         {{ home.call_to_action|safe }}
                     </p>
 
-                    <button
-                        class="px-5 mt-4 py-3 bg-custom-color1 text-white font-semibold text-lg rounded hover:bg-custom-color1 transition ease-in-out duration-500">Contact
-                        us</button>
+                    <a href="{% url 'contact' %}"
+                        class="inline-block px-5 mt-6 py-3 bg-custom-color1 text-white font-semibold text-lg rounded hover:bg-custom-color1 transition ease-in-out duration-500">
+                        Contact us
+                    </a>
                 </div>
             </div>
         </div>
@@ -113,7 +116,8 @@
 <!-- testimonial section -->
 <section class="bg-white py-10 md:py-16">
     <div class="container max-w-screen-xl mx-auto px-4">
-        <h2 class="font-semibold text-gray-900 text-2xl md:text-4xl text-center leading-normal mb-14">What People Say About Dished Up Dining</h2>
+        <h2 class="font-semibold text-gray-900 text-2xl md:text-4xl text-center leading-normal mb-14">What People Say
+            About Dished Up Dining</h2>
 
         {% if reviews %}
         <div class="py-12">
@@ -121,14 +125,17 @@
                 <!-- Carousel wrapper -->
                 <div class="overflow-hidden relative h-96 rounded-lg">
                     {% for review in reviews %}
-                    <div class="hidden duration-700 ease-in-out absolute inset-0 transition-all transform" data-carousel-item="{{ forloop.counter0 }}">
+                    <div class="hidden duration-700 ease-in-out absolute inset-0 transition-all transform"
+                        data-carousel-item="{{ forloop.counter0 }}">
                         <div class="bg-gray-100 rounded-lg p-8 h-full flex flex-col justify-between">
                             {% if review.image %}
-                            <img src="{{ review.image.url }}" alt="{{ review.name }}" class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
+                            <img src="{{ review.image.url }}" alt="{{ review.name }}"
+                                class="w-24 h-24 rounded-full mx-auto mb-4 object-cover">
                             {% endif %}
                             <div class="flex items-center justify-center gap-1 mb-4">
                                 {% for i in "12345" %}
-                                <i class="fas fa-star {% if forloop.counter <= review.rating %}text-yellow-500{% else %}text-gray-300{% endif %}"></i>
+                                <i
+                                    class="fas fa-star {% if forloop.counter <= review.rating %}text-yellow-500{% else %}text-gray-300{% endif %}"></i>
                                 {% endfor %}
                             </div>
                             <p class="text-gray-600 text-center mb-4">{{ review.comment|safe }}</p>
@@ -139,18 +146,28 @@
                 </div>
 
                 <!-- Slider controls -->
-                <button type="button" class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-prev>
-                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-custom-color1 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
-                        <svg class="w-4 h-4 text-color2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4" />
+                <button type="button"
+                    class="absolute top-0 left-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                    data-carousel-prev>
+                    <span
+                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-custom-color1 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                        <svg class="w-4 h-4 text-color2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M5 1 1 5l4 4" />
                         </svg>
                         <span class="sr-only">Previous</span>
                     </span>
                 </button>
-                <button type="button" class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none" data-carousel-next>
-                    <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-custom-color1 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
-                        <svg class="w-4 h-4 text-color2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
+                <button type="button"
+                    class="absolute top-0 right-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
+                    data-carousel-next>
+                    <span
+                        class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-custom-color1 group-hover:bg-white/50 group-focus:ring-4 group-focus:ring-white group-focus:outline-none">
+                        <svg class="w-4 h-4 text-color2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 9 4-4-4-4" />
                         </svg>
                         <span class="sr-only">Next</span>
                     </span>
@@ -169,9 +186,11 @@
 <!-- Contact section -->
 <section class="bg-white py-10 md:py-16">
     <div class="container max-w-screen-xl mx-auto px-4">
-        <div class="bg-custom-color1 flex flex-col lg:flex-row items-center justify-between py-12 px-8 lg:p-14 rounded-lg overflow-hidden relative">            
+        <div
+            class="bg-custom-color1 flex flex-col lg:flex-row items-center justify-between py-12 px-8 lg:p-14 rounded-lg overflow-hidden relative">
             <div class="text-center lg:text-left lg:w-1/2 mb-10 lg:mb-0 z-10">
-                <h1 class="font-semibold text-white text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">Talk to us<br>to discuss</h1>
+                <h1 class="font-semibold text-white text-4xl md:text-5xl lg:text-6xl leading-tight mb-6">Talk to
+                    us<br>to discuss</h1>
                 <p class="font-normal text-white text-md md:text-xl max-w-md mx-auto lg:mx-0">
                     We are ready to help with your next event.
                     <br>
@@ -195,31 +214,45 @@
                 <div class="max-w-lg mx-auto pointer-events-auto">
                     <form class="space-y-4" method="post">
                         {% csrf_token %}
-                        <div id="div_id_name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50">
+                        <div id="div_id_name"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50">
                             <label for="id_name" class="block text-sm font-medium text-gray-700">
                                 Name<span class="asteriskField">*</span>
                             </label>
-                            <input type="text" name="name" maxlength="100" class="textinput bg-white rounded-lg text-gray-700 border-gray-300 appearance-none px-4 py-2 w-full block focus:outline-none leading-normal border z-20" required="" id="id_name">
+                            <input type="text" name="name" maxlength="100"
+                                class="textinput bg-white rounded-lg text-gray-700 border-gray-300 appearance-none px-4 py-2 w-full block focus:outline-none leading-normal border z-20"
+                                required="" id="id_name">
                         </div>
-                        <div id="div_id_email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50">
+                        <div id="div_id_email"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50">
                             <label for="id_email" class="block text-sm font-medium text-gray-700">
                                 Email<span class="asteriskField">*</span>
                             </label>
-                            <input type="email" name="email" maxlength="254" class="emailinput bg-white rounded-lg text-gray-700 border-gray-300 appearance-none px-4 py-2 w-full block focus:outline-none leading-normal border z-20" required="" id="id_email">
+                            <input type="email" name="email" maxlength="254"
+                                class="emailinput bg-white rounded-lg text-gray-700 border-gray-300 appearance-none px-4 py-2 w-full block focus:outline-none leading-normal border z-20"
+                                required="" id="id_email">
                         </div>
-                        <div id="div_id_subject" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50">
+                        <div id="div_id_subject"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50">
                             <label for="id_subject" class="block text-sm font-medium text-gray-700">
                                 Subject<span class="asteriskField">*</span>
                             </label>
-                            <input type="text" name="subject" maxlength="200" class="textinput bg-white rounded-lg text-gray-700 border-gray-300 appearance-none px-4 py-2 w-full block focus:outline-none leading-normal border z-20" required="" id="id_subject">
+                            <input type="text" name="subject" maxlength="200"
+                                class="textinput bg-white rounded-lg text-gray-700 border-gray-300 appearance-none px-4 py-2 w-full block focus:outline-none leading-normal border z-20"
+                                required="" id="id_subject">
                         </div>
-                        <div id="div_id_message" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50">
+                        <div id="div_id_message"
+                            class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-green-500 focus:ring focus:ring-green-200 focus:ring-opacity-50">
                             <label for="id_message" class="block text-sm font-medium text-gray-700">
                                 Message<span class="asteriskField">*</span>
                             </label>
-                            <textarea name="message" cols="40" rows="10" class="textarea bg-white rounded-lg text-gray-700 border-gray-300 appearance-none px-4 py-2 w-full block focus:outline-none leading-normal border z-20" required="" id="id_message"></textarea>
+                            <textarea name="message" cols="40" rows="10"
+                                class="textarea bg-white rounded-lg text-gray-700 border-gray-300 appearance-none px-4 py-2 w-full block focus:outline-none leading-normal border z-20"
+                                required="" id="id_message"></textarea>
                         </div>
-                        <input type="submit" name="submit" value="Send Message" class="btn w-full bg-custom-color1 hover:bg-custom-color2 hover:text-color1 text-color2 font-bold py-2 px-4 rounded-md transition duration-300" id="submit-id-submit">
+                        <input type="submit" name="submit" value="Send Message"
+                            class="btn w-full bg-custom-color1 hover:bg-custom-color2 hover:text-color1 text-color2 font-bold py-2 px-4 rounded-md transition duration-300"
+                            id="submit-id-submit">
                     </form>
                 </div>
             </section>
