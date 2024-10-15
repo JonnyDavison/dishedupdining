@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /dashboard/
+Disallow: /profiles/
+Sitemap: https://dishedupdining-339b98932b82.herokuapp.com/sitemap.xml
