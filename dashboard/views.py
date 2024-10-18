@@ -18,19 +18,8 @@ def dashboard_home(request):
     thirty_days_ago = timezone.now() - timedelta(days=30)
     unread_contacts = ContactSubmission.objects.filter(is_read=False).order_by('-created_at')
     read_contacts = ContactSubmission.objects.filter(is_read=True).order_by('-created_at')
-    
-    total_views = PageView.objects.filter(timestamp__gte=thirty_days_ago).count()
-    unique_visitors = PageView.objects.filter(timestamp__gte=thirty_days_ago).values('user_ip').distinct().count()
-    new_visitors = PageView.objects.filter(timestamp__gte=thirty_days_ago, user__isnull=True).values('user_ip').distinct().count()
     contact_submissions = ContactSubmission.objects.filter(created_at__gte=thirty_days_ago).count()
     
-    top_pages = PageView.objects.filter(timestamp__gte=thirty_days_ago) \
-        .values('page_url') \
-        .annotate(count=Count('id')) \
-        .order_by('-count')[:5]
-    
-    avg_time_on_page = PageView.objects.filter(timestamp__gte=thirty_days_ago, time_on_page__isnull=False) \
-        .aggregate(avg_time=Avg('time_on_page'))['avg_time']
     
     recent_contacts = ContactSubmission.objects.order_by('-created_at')[:5]
     
@@ -43,13 +32,8 @@ def dashboard_home(request):
         'total_reviews': Review.objects.count(),
         'recent_contacts': ContactSubmission.objects.order_by('-created_at')[:5],
         'latest_updates': About.objects.order_by('-updated_at')[:5],
-        'total_views': total_views,
-        'new_visitors': new_visitors,
         'contact_submissions': contact_submissions,
-        'top_pages': top_pages,
         'recent_contacts': recent_contacts,
-        'avg_time_on_page': avg_time_on_page,
-        'unique_visitors': unique_visitors,
     }
     return render(request, 'dashboard/dashboard_home.html', context)
 
