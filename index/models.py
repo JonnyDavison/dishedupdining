@@ -10,9 +10,9 @@ class Home(models.Model):
         
     created_on = models.DateTimeField(auto_now_add=True,null=True, blank=True)
     logo = models.ImageField(null=True, blank=True)
-    main_title = models.TextField()
-    sub_title = models.TextField()
-    call_to_action = models.TextField()
+    main_title = models.TextField(null=True, blank=True)
+    sub_title = models.TextField(null=True, blank=True)
+    call_to_action = models.TextField(null=True, blank=True)
     hero_image = models.ImageField(null=True, blank=True)
     is_active = models.BooleanField(default=False)
 
