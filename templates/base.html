@@ -52,13 +52,13 @@
 
             <div class="flex items-center justify-between mb-10 lg:mb-0">
                 {% if home.logo %}
-                <a href="{% url 'index' %}">
-                    <img src="{{ home.logo.url }}" alt="Logo img" class="h-40 md:h-30 lg:h-40 w-auto object-contain">
+                <a href="{% url 'index' %}" class="mr-auto">
+                    <img src="{{ home.logo.url }}" alt="Logo img" class="h-20 md:h-30 lg:h-40 w-auto object-contain -ml-8 sm:ml-0">
                 </a>
                 {% endif %}
 
                 <button
-                    class="lg:hidden w-10 h-10 ml-auto flex items-center justify-center border text-color1 border-color1 rounded-md"
+                    class="lg:hidden w-10 h-10  flex items-center justify-center border text-color1 border-color1 rounded-md"
                     @click="navbarOpen = !navbarOpen">
                     <i class="fa-solid fa-bars"></i>
                 </button>
