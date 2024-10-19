@@ -57,6 +57,15 @@ body {
   width: 100%;
 }
 
+/* Cookie banner */
+.z-60 {
+  z-index: 60;
+}
+
+.z-70 {
+  z-index: 70;
+}
+
 @media (min-width: 640px) {
   .container {
     max-width: 640px;

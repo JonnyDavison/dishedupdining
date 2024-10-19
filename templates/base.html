@@ -45,7 +45,9 @@
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="https://unpkg.com/akar-icons-fonts" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+    <script src="{% static 'js/cookie_consent.js' %}" defer></script>
 
+    {% if request.session.cookie_consent_analytics %}
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-1KHVDJHR6Z"></script>
     <script>
@@ -55,196 +57,199 @@
             dataLayer.push(arguments);
         }
         gtag('js', new Date());
-
         gtag('config', 'G-1KHVDJHR6Z');
     </script>
+    {% endif %}
 
     {% block extra_css %}{% endblock %}
     {% block extra_js %}{% endblock %}
 </head>
 
-<section class="bg-white">
+<body>
 
-    <div class="container max-w-screen-xl mx-auto px-4">
+    <section class="bg-white">
 
-        <nav class="flex-wrap lg:flex items-center py-14 xl:relative z-10" x-data="{navbarOpen:false}">
+        <div class="container max-w-screen-xl mx-auto px-4">
 
-            <div class="flex items-center justify-between mb-10 lg:mb-0">
-                {% if home.logo %}
-                <a href="{% url 'index' %}" class="mr-auto">
-                    <img src="{{ home.logo.url }}" alt="Logo img"
-                        class="h-20 md:h-30 lg:h-40 w-auto object-contain -ml-8 sm:ml-0">
-                </a>
-                {% endif %}
+            <nav class="flex-wrap lg:flex items-center py-14 xl:relative z-10" x-data="{navbarOpen:false}">
 
-                <button
-                    class="lg:hidden w-10 h-10  flex items-center justify-center border text-color1 border-color1 rounded-md"
-                    @click="navbarOpen = !navbarOpen">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-            </div>
-
-            <ul class="lg:flex flex-col lg:flex-row lg:items-center lg:mx-auto lg:space-x-8 xl:space-x-16"
-                :class="{'hidden':!navbarOpen,'flex':navbarOpen}">
-
-
-                <li
-                    class="font-semibold text-gray-900 text-lg hover:text-gray-400 transition ease-in-out duration-300 mb-5 lg:mb-0">
-                    <a href="{% url 'index' %}">Home</a>
-                </li>
-                <li
-                    class="font-semibold text-gray-900 text-lg hover:text-gray-400 transition ease-in-out duration-300 mb-5 lg:mb-0">
-                    <a href="{% url 'about' %}">About Us</a>
-                </li>
-
-                <li
-                    class="font-semibold text-gray-900 text-lg hover:text-gray-400 transition ease-in-out duration-300 mb-5 lg:mb-0">
-                    <a href="{% url 'services' %}">Services</a>
-                </li>
-
-                <li
-                    class="font-semibold text-gray-900 text-lg hover:text-gray-400 transition ease-in-out duration-300 mb-5 lg:mb-0">
-                    <a href="{% url 'contact' %}">Contact Us</a>
-                </li>
-
-                <li
-                    class="font-semibold text-gray-900 text-lg hover:text-gray-400 transition ease-in-out duration-300 mb-5 lg:mb-0">
-                    <a href="{% url 'menu' %}">Menu</a>
-                </li>
-
-            </ul>
-
-            <a class="px-5 py-3 lg:block border-2 rounded-lg font-semibold text-color1 border-color1 text-lg hover:bg-custom-color3 
-                hover:text-white transition ease-linear duration-500" href="{% url 'contact' %}"
-                :class="{'hidden':!navbarOpen,'flex':navbarOpen}">
-                Request quote
-            </a>
-
-        </nav>
-    </div>
-</section>
-
-{% block content %}
-
-{% endblock %}
-
-<!-- footer -->
-<footer class="bg-white py-10 md:py-16">
-
-    <div class="container max-w-screen-xl mx-auto px-4">
-
-        <div class="flex flex-col lg:flex-row justify-between">
-            <div class="text-center lg:text-left mb-10 lg:mb-0">
-                <div class="flex justify-center lg:justify-start mb-5">
-                    <a href="{% url 'index' %}">
+                <div class="flex items-center justify-between mb-10 lg:mb-0">
+                    {% if home.logo %}
+                    <a href="{% url 'index' %}" class="mr-auto">
                         <img src="{{ home.logo.url }}" alt="Logo img"
-                            class="h-40 md:h-30 lg:h-40 w-auto object-contain">
+                            class="h-20 md:h-30 lg:h-40 w-auto object-contain -ml-8 sm:ml-0">
                     </a>
+                    {% endif %}
+
+                    <button
+                        class="lg:hidden w-10 h-10  flex items-center justify-center border text-color1 border-color1 rounded-md"
+                        @click="navbarOpen = !navbarOpen">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
                 </div>
 
-                <p class="font-light text-gray-400 text-xl mb-10 lg:ps-8">Dished up Dining</p>
+                <ul class="lg:flex flex-col lg:flex-row lg:items-center lg:mx-auto lg:space-x-8 xl:space-x-16"
+                    :class="{'hidden':!navbarOpen,'flex':navbarOpen}">
 
-                <div class="flex items-center justify-center space-x-5">
-                    <a href="https://www.facebook.com/dishedupdeli/" target="_blank"
-                        class="px-3 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-green-800 hover:text-white transition ease-in-out duration-500">
-                        <i class="fab fa-facebook-f fa-xl"></i>
+
+                    <li
+                        class="font-semibold text-gray-900 text-lg hover:text-gray-400 transition ease-in-out duration-300 mb-5 lg:mb-0">
+                        <a href="{% url 'index' %}">Home</a>
+                    </li>
+                    <li
+                        class="font-semibold text-gray-900 text-lg hover:text-gray-400 transition ease-in-out duration-300 mb-5 lg:mb-0">
+                        <a href="{% url 'about' %}">About Us</a>
+                    </li>
+
+                    <li
+                        class="font-semibold text-gray-900 text-lg hover:text-gray-400 transition ease-in-out duration-300 mb-5 lg:mb-0">
+                        <a href="{% url 'services' %}">Services</a>
+                    </li>
+
+                    <li
+                        class="font-semibold text-gray-900 text-lg hover:text-gray-400 transition ease-in-out duration-300 mb-5 lg:mb-0">
+                        <a href="{% url 'contact' %}">Contact Us</a>
+                    </li>
+
+                    <li
+                        class="font-semibold text-gray-900 text-lg hover:text-gray-400 transition ease-in-out duration-300 mb-5 lg:mb-0">
+                        <a href="{% url 'menu' %}">Menu</a>
+                    </li>
+
+                </ul>
+
+                <a class="px-5 py-3 lg:block border-2 rounded-lg font-semibold text-color1 border-color1 text-lg hover:bg-custom-color3 
+                hover:text-white transition ease-linear duration-500" href="{% url 'contact' %}"
+                    :class="{'hidden':!navbarOpen,'flex':navbarOpen}">
+                    Request quote
+                </a>
+
+            </nav>
+        </div>
+    </section>
+
+    {% block content %}
+
+    {% endblock %}
+
+    <!-- footer -->
+    <footer class="bg-white py-10 md:py-16">
+
+        <div class="container max-w-screen-xl mx-auto px-4">
+
+            <div class="flex flex-col lg:flex-row justify-between">
+                <div class="text-center lg:text-left mb-10 lg:mb-0">
+                    <div class="flex justify-center lg:justify-start mb-5">
+                        <a href="{% url 'index' %}">
+                            <img src="{{ home.logo.url }}" alt="Logo img"
+                                class="h-40 md:h-30 lg:h-40 w-auto object-contain">
+                        </a>
+                    </div>
+
+                    <p class="font-light text-gray-400 text-xl mb-10 lg:ps-8">Dished up Dining</p>
+
+                    <div class="flex items-center justify-center space-x-5">
+                        <a href="https://www.facebook.com/dishedupdeli/" target="_blank"
+                            class="px-3 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-green-800 hover:text-white transition ease-in-out duration-500">
+                            <i class="fab fa-facebook-f fa-xl"></i>
+                        </a>
+
+                        <a href="https://www.instagram.com/dishedupdining/" target="_blank"
+                            class="px-3 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-green-800 hover:text-white transition ease-in-out duration-500">
+                            <i class="fab fa-instagram fa-xl"></i>
+                        </a>
+
+                        <a href="mailto:info@dishedupdining.com"
+                            class="px-3 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-green-800 hover:text-white transition ease-in-out duration-500">
+                            <i class="fa-regular fa-envelope fa-xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="text-center lg:text-left mb-10 lg:mb-0">
+                    <h4 class="font-semibold text-gray-900 text-2xl mb-6">Sitemap</h4>
+
+                    <a href="{% url 'index' %}"
+                        class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Home</a>
+
+                    <a href="{% url 'about' %}"
+                        class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">About
+                        Us</a>
+
+                    <a href="{% url 'service_list' %}"
+                        class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Services</a>
+
+                    <a href="{% url 'contact' %}"
+                        class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Contact
+                        Us</a>
+
+                    <a href="{% url 'menu' %}"
+                        class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Menu</a>
+                </div>
+
+                <div class="text-center lg:text-left mb-10 lg:mb-0">
+                    <h4 class="font-semibold text-gray-900 text-2xl mb-6">Dished Up Dining</h4>
+
+                    <a href="#"
+                        class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">
+                        Upper Braniel Road
                     </a>
 
-                    <a href="https://www.instagram.com/dishedupdining/" target="_blank"
-                        class="px-3 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-green-800 hover:text-white transition ease-in-out duration-500">
-                        <i class="fab fa-instagram fa-xl"></i>
+                    <a href="#"
+                        class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">
+                        Belfast</a>
+
+                    <a href="#"
+                        class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">
+                        BT5 7SR
                     </a>
+
+                    <a href="#"
+                        class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">
+                        NI
+                    </a>
+
+
+                </div>
+
+                <div class="text-center lg:text-left">
+                    <h4 class="font-semibold text-gray-900 text-2xl mb-6">Contact</h4>
 
                     <a href="mailto:info@dishedupdining.com"
-                        class="px-3 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-green-800 hover:text-white transition ease-in-out duration-500">
-                        <i class="fa-regular fa-envelope fa-xl"></i>
-                    </a>
+                        class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">info@dishedupdining.com</a>
+
+                    <a
+                        class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">07703728877</a>
+
                 </div>
             </div>
-
-            <div class="text-center lg:text-left mb-10 lg:mb-0">
-                <h4 class="font-semibold text-gray-900 text-2xl mb-6">Sitemap</h4>
-
-                <a href="{% url 'index' %}"
-                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Home</a>
-
-                <a href="{% url 'about' %}"
-                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">About
-                    Us</a>
-
-                <a href="{% url 'service_list' %}"
-                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Services</a>
-
-                <a href="{% url 'contact' %}"
-                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Contact
-                    Us</a>
-
-                <a href="{% url 'menu' %}"
-                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">Menu</a>
-            </div>
-
-            <div class="text-center lg:text-left mb-10 lg:mb-0">
-                <h4 class="font-semibold text-gray-900 text-2xl mb-6">Dished Up Dining</h4>
-
-                <a href="#"
-                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">
-                    Upper Braniel Road
-                </a>
-
-                <a href="#"
-                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">
-                    Belfast</a>
-
-                <a href="#"
-                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">
-                    BT5 7SR
-                </a>
-
-                <a href="#"
-                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">
-                    NI
-                </a>
-
-
-            </div>
-
-            <div class="text-center lg:text-left">
-                <h4 class="font-semibold text-gray-900 text-2xl mb-6">Contact</h4>
-
-                <a href="mailto:info@dishedupdining.com"
-                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">info@dishedupdining.com</a>
-
-                <a
-                    class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">07703728877</a>
-
+            <div class="lg:text-left lg:ps-8">
+                {% if not user.is_authenticated %}
+                <a href="{% url 'login' %}" class="text-gray-400 text-md mb-6 hover:text-gray-800">Login</a>
+                {% else %}
+                <a href="{% url 'dashboard_home' %}"
+                    class="text-gray-400 text-md mb-6 hover:text-gray-800">Dashboard</a>
+                <form method="post" action="{% url 'logout' %}" class="inline">
+                    {% csrf_token %}
+                    <button type="submit" class="text-gray-400 text-md mb-6 hover:text-gray-800">Logout</button>
+                </form>
+                {% endif %}
             </div>
         </div>
-        <div class="lg:text-left lg:ps-8">
-            {% if not user.is_authenticated %}
-            <a href="{% url 'login' %}" class="text-gray-400 text-md mb-6 hover:text-gray-800">Login</a>
-            {% else %}
-            <a href="{% url 'dashboard_home' %}" class="text-gray-400 text-md mb-6 hover:text-gray-800">Dashboard</a>
-            <form method="post" action="{% url 'logout' %}" class="inline">
-                {% csrf_token %}
-                <button type="submit" class="text-gray-400 text-md mb-6 hover:text-gray-800">Logout</button>
-            </form>
-            {% endif %}
-        </div>
-    </div>
-    <!-- container.// -->
+        <!-- container.// -->
 
-</footer>
-<!-- footer //end -->
+    </footer>
+    <!-- footer //end -->
 
 
-{% block postloadjs %}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
-{% endblock %}
+    {% block postloadjs %}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+    {% endblock %}
 
-<script>
-    feather.replace()
-</script>
-
+    <script>
+        feather.replace()
+    </script>
+    {% include 'cookie_consent/cookie_banner.html' %}
 </body>
 
 </html>

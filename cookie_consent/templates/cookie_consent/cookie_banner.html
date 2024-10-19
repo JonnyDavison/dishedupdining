@@ -1,0 +1,35 @@
+<div id="cookie-banner" class="hidden z-50 fixed bottom-0 left-0 right-0 bg-gray-800 text-white p-4">
+    <div class="container mx-auto">
+        <p class="mb-2">We use cookies to improve your experience on our site. By continuing to use our site, you agree to our use of cookies.</p>
+        <div class="flex flex-wrap gap-2">
+            <button id="accept-all" class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">Accept All</button>
+            <button id="reject-all" class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">Reject All</button>
+            <button id="customize" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Customise</button>
+        </div>
+    </div>
+</div>
+
+<div id="cookie-settings" class="hidden fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-60">
+    <div class="bg-white p-6 rounded-lg max-w-md w-full relative z-70">
+        <h2 class="text-xl font-bold mb-4">Cookie Settings</h2>
+        <div class="mb-4">
+            <label class="flex items-center">
+                <input type="checkbox" id="analytics-consent" class="mr-2">
+                Analytics Cookies
+            </label>
+        </div>
+        <div class="mb-4">
+            <label class="flex items-center">
+                <input type="checkbox" id="marketing-consent" class="mr-2">
+                Marketing Cookies
+            </label>
+        </div>
+        <div class="mb-4">
+            <label class="flex items-center">
+                <input type="checkbox" id="preferences-consent" class="mr-2">
+                Preferences Cookies
+            </label>
+        </div>
+        <button id="save-preferences" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Save Preferences</button>
+    </div>
+</div>
