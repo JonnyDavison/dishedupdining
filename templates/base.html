@@ -7,7 +7,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="google-site-verification" content="kxAVu7ExuWxUFpnVKJ9kDAZAS5q1VVJQzY4hG8hXq8k" />
-    <meta name="keywords" content="Catering, Events, Flavour, Food, outside catering, event catering funerals hot fork, finger food hot food delivery, intimate meals at home">
+    <meta name="keywords"
+        content="Catering, Events, Flavour, Food, outside catering, event catering funerals hot fork, finger food hot food delivery, intimate meals at home">
     <meta name="description" content="Catering & Events Company, specialising in flavour first food">
     <title>Dished Up Dining | Belfast Catering & Events</title>
 
@@ -31,14 +32,32 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet">
 
     <!-- JavaScript -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous" defer></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"
+        defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js" defer></script>
     <script src="https://kit.fontawesome.com/75b57bf907.js" crossorigin="anonymous" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js" integrity="sha512-7x3zila4t2qNycrtZ31HO0NnJr8kg2VI67YLoRSyi9hGhRN66FHYWr7Axa9Y1J9tGYHVBPqIjSE1ogHrJTz51g==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.28.0/feather.min.js"
+        integrity="sha512-7x3zila4t2qNycrtZ31HO0NnJr8kg2VI67YLoRSyi9hGhRN66FHYWr7Axa9Y1J9tGYHVBPqIjSE1ogHrJTz51g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
     <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <script src="https://unpkg.com/akar-icons-fonts" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1KHVDJHR6Z"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-1KHVDJHR6Z');
+    </script>
 
     {% block extra_css %}{% endblock %}
     {% block extra_js %}{% endblock %}
@@ -53,7 +72,8 @@
             <div class="flex items-center justify-between mb-10 lg:mb-0">
                 {% if home.logo %}
                 <a href="{% url 'index' %}" class="mr-auto">
-                    <img src="{{ home.logo.url }}" alt="Logo img" class="h-20 md:h-30 lg:h-40 w-auto object-contain -ml-8 sm:ml-0">
+                    <img src="{{ home.logo.url }}" alt="Logo img"
+                        class="h-20 md:h-30 lg:h-40 w-auto object-contain -ml-8 sm:ml-0">
                 </a>
                 {% endif %}
 
@@ -168,7 +188,7 @@
 
                 <a href="#"
                     class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">
-                    Upper Braniel Road                    
+                    Upper Braniel Road
                 </a>
 
                 <a href="#"
@@ -196,21 +216,21 @@
 
                 <a
                     class="block font-light text-gray-400 text-xl mb-6 hover:text-gray-800 transition ease-in-out duration-300">07703728877</a>
-                
+
             </div>
         </div>
         <div class="lg:text-left lg:ps-8">
             {% if not user.is_authenticated %}
-                <a href="{% url 'login' %}" class="text-gray-400 text-md mb-6 hover:text-gray-800">Login</a>
+            <a href="{% url 'login' %}" class="text-gray-400 text-md mb-6 hover:text-gray-800">Login</a>
             {% else %}
-                <a href="{% url 'dashboard_home' %}" class="text-gray-400 text-md mb-6 hover:text-gray-800">Dashboard</a>
-                <form method="post" action="{% url 'logout' %}" class="inline">
-                    {% csrf_token %}
-                    <button type="submit" class="text-gray-400 text-md mb-6 hover:text-gray-800">Logout</button>
-                  </form>
+            <a href="{% url 'dashboard_home' %}" class="text-gray-400 text-md mb-6 hover:text-gray-800">Dashboard</a>
+            <form method="post" action="{% url 'logout' %}" class="inline">
+                {% csrf_token %}
+                <button type="submit" class="text-gray-400 text-md mb-6 hover:text-gray-800">Logout</button>
+            </form>
             {% endif %}
         </div>
-    </div> 
+    </div>
     <!-- container.// -->
 
 </footer>
