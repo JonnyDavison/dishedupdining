@@ -16,4 +16,7 @@ def set_cookie_consent(request):
     consent.preferences = request.POST.get('preferences') == 'true'
     consent.save()
 
+    # Set the session variable for analytics consent
+    request.session['cookie_consent_analytics'] = consent.analytics
+
     return JsonResponse({'status': 'success'})
