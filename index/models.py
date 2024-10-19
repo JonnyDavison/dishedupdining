@@ -1,5 +1,6 @@
 from django.db import models
 from django_summernote.fields import SummernoteTextField
+from custom_storages import MediaStorage
 
 
 class Home(models.Model):
@@ -110,7 +111,7 @@ class About(models.Model):
     title = models.CharField(max_length=200)
     sub_title = models.CharField(max_length=200)
     content = models.TextField()
-    image = models.ImageField(upload_to='about/', null=True, blank=True)
+    image = models.ImageField(upload_to='services/', storage=MediaStorage(), blank=True, null=True)
     is_active = models.BooleanField(default=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

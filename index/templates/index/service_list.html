@@ -21,8 +21,7 @@
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                             <div class="aspect-square w-full max-w-[300px] mx-auto lg:max-w-[250px]">
                                 {% if service.image %}
-                                <img src="{{ service.image.url }}" alt="{{ service.name }}"
-                                    class="w-full h-full object-cover object-center rounded-lg">
+                                <img src="{{ MEDIA_URL }}{{ service.image.name }}" alt="{{ service.name }}">
                                 {% else %}
                                 <div class="w-full h-full bg-gray-200 rounded-lg"></div>
                                 {% endif %}
@@ -42,7 +41,7 @@
                                 </div>
             
                                 {% if service.price %}
-                                <p class="text-lg font-semibold text-color4  mb-6">Prices From: ${{ service.price }}</p>
+                                <p class="text-lg font-semibold text-color4  mb-6">Prices From: £{{ service.price }}</p>
                                 {% endif %}
             
                                 <div>
