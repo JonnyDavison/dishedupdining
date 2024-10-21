@@ -179,6 +179,14 @@ class ServiceCreateView(LoginRequiredMixin, UserPassesTestMixin, ServiceBaseView
     def test_func(self):
         return self.request.user.is_superuser
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        if self.object.image:
+            # Print debug information
+            print(f"Image saved: {self.object.image.name}")
+            print(f"Image URL: {self.object.image.url}")
+        return response
+
 class ServiceUpdateView(LoginRequiredMixin, UserPassesTestMixin, ServiceBaseView, UpdateView):
     model = Service
     form_class = ServiceForm
@@ -187,6 +195,14 @@ class ServiceUpdateView(LoginRequiredMixin, UserPassesTestMixin, ServiceBaseView
 
     def test_func(self):
         return self.request.user.is_superuser
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        if self.object.image:
+            # Print debug information
+            print(f"Image updated: {self.object.image.name}")
+            print(f"Image URL: {self.object.image.url}")
+        return response
 
 class ServiceDeleteView(LoginRequiredMixin, UserPassesTestMixin, ServiceBaseView, DeleteView):
     model = Service
@@ -280,4 +296,3 @@ class MenuPageView(TemplateView):
         context['home'] = home_data
 
         return context
-

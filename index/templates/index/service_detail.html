@@ -16,7 +16,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     <h2 class="text-2xl font-bold text-gray-900 mb-2">{{ service.sub_title }}</h2>
                     {% if service.image %}
-                    <img src="{{ MEDIA_URL }}{{ service.image.name }}" alt="{{ service.name }}">
+                        <img src="{{ service.image.url }}" alt="{{ service.name }}">
                     {% endif %}
                     <div class="prose max-w-none mb-4">
                         {{ service.description|safe }}
