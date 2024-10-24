@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container text-center mt-5">
+    <h1 class="text-4xl font-bold mb-4">404 - Page Not Found</h1>
+    <p class="text-xl mb-8">Sorry, the page you are looking for doesn't exist.</p>
+    <a href="{% url 'index' %}"
+        class="inline-block px-5 mt-6 py-3 bg-custom-color1 text-white font-semibold text-lg rounded hover:bg-custom-color1 transition ease-in-out duration-500">
+        Contact us
+    </a>
+</div>
+{% endblock %}
