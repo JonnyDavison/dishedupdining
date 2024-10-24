@@ -21,7 +21,8 @@
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
                             <div class="aspect-square w-full max-w-[300px] mx-auto lg:max-w-[250px]">
                                 {% if service.image %}
-                                <img src="{{ service.image.url }}" alt="{{ service.name }}">                                {% else %}
+                                <img src="{{ service.image.url }}" alt="{{ service.name }}">                                
+                                {% else %}
                                 <div class="w-full h-full bg-gray-200 rounded-lg"></div>
                                 {% endif %}
                             </div>
@@ -35,7 +36,7 @@
                                     {{ service.sub_title }}
                                 </p>
             
-                                <div class="text-color4 mb-6">
+                                <div class="text-color4 font2 mb-6">
                                     {{ service.description|safe|truncatewords:50 }}
                                 </div>
             
