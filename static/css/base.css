@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 @import url('https://fonts.cdnfonts.com/css/kiona-2');
+@import url('https://fonts.cdnfonts.com/css/raleway-7');
 
 /* Color Pallet */
 
@@ -51,6 +52,10 @@
 html,
 body {
   font-family: 'Kiona', sans-serif !important;
+}
+
+.font2 {
+  font-family: 'Raleway', sans-serif;
 }
 
 .container {
